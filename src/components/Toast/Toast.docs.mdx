@@ -1,0 +1,41 @@
+{/* Toast.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './Toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+Toast displays a compact dark notification. Single-line message with optional close. Typically appears temporarily (e.g. top-right corner) and auto-dismisses.
+
+---
+
+## Default
+
+Dark background (mirage-900), white text, 4px corner radius. Compact layout for short messages.
+
+<Canvas of={ToastStories.Default} sourceState="shown" />
+
+---
+
+## Example: Animated
+
+Click the button to show a Toast with enter/exit animation.
+
+<Canvas of={ToastStories.AnimatedExample} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={ToastStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use Toast for transient feedback (e.g. "Payment added", "Saved")
+- **Do**: Place Toasts in a fixed corner (top-right or bottom-right)
+- **Do**: Keep messages short—one line when possible
+- **Don't**: Use Toast for critical errors that require acknowledgment
+- **Don't**: Stack many Toasts—consider a single summary or Alert instead

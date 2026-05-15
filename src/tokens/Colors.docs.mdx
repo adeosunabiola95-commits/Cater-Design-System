@@ -1,0 +1,48 @@
+{/* Colors.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as ColorStories from './Colors.stories';
+
+<Meta of={ColorStories} />
+
+# Colors
+
+Color tokens synced to **Cater Design Systems** Figma (Brands, Primitives, Semantic / Tokens collections).
+
+## Use in code
+
+**TypeScript** — import maps from this repo (`@/` matches `src/`):
+
+```tsx
+import { brands, primitives, semantic } from '@/tokens';
+
+const cardBg = semantic.surface.default;
+const primary = primitives.salem['600'];
+```
+
+**Tailwind (v4 `@theme`)** — colors from `src/index.css` are available as utilities (see component stories), e.g. `bg-surface-default`, `text-text-title`, `bg-brand-sherwood-green`, `border-border-default`.
+
+**CSS variables** — same file defines `--color-*` for brands, primitives, and semantic tokens (e.g. `var(--color-text-title)`).
+
+---
+
+## Brand Colors
+
+Core brand colors from which all scales are derived.
+
+<Canvas of={ColorStories.Brand} sourceState="shown" />
+
+---
+
+## Primitive Scales
+
+Full 50–900 shade scales for each brand color.
+
+<Canvas of={ColorStories.Primitives} sourceState="shown" />
+
+---
+
+## Semantic Tokens
+
+Purpose-driven color tokens for use in components.
+
+<Canvas of={ColorStories.Semantic} sourceState="shown" />

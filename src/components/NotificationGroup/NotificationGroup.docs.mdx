@@ -1,0 +1,58 @@
+{/* NotificationGroup.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as NotificationGroupStories from './NotificationGroup.stories';
+
+<Meta of={NotificationGroupStories} />
+
+# Notification Group
+
+A notification settings row that pairs a Toggle/Switch with a title and description. Used for settings pages where users toggle individual notification preferences.
+
+---
+
+## Variants
+
+### Small – Off
+
+<Canvas of={NotificationGroupStories.SmallOff} sourceState="shown" />
+
+### Small – On
+
+<Canvas of={NotificationGroupStories.SmallOn} sourceState="shown" />
+
+### Medium – Off
+
+<Canvas of={NotificationGroupStories.MediumOff} sourceState="shown" />
+
+### Medium – On
+
+<Canvas of={NotificationGroupStories.MediumOn} sourceState="shown" />
+
+---
+
+## Settings Page Example
+
+Interactive example showing multiple notification toggles working together.
+
+<Canvas of={NotificationGroupStories.SettingsPage} sourceState="shown" />
+
+---
+
+## All Variants
+
+<Canvas of={NotificationGroupStories.AllVariants} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={NotificationGroupStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Group related notification settings together on a settings page
+- **Do**: Provide both a title and description for clarity
+- **Don't**: Use for non-toggle actions — this is specifically for on/off preferences
+- **Accessibility**: The toggle uses `role="switch"` and `aria-checked` internally

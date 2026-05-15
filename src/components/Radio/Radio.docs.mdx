@@ -1,0 +1,85 @@
+{/* Radio.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio Button
+
+A radio button for selecting a single option from a mutually exclusive group. Shows a filled inner circle when selected.
+
+Two visual variants:
+- **mp (Checboxes mp)**: Outlined style — dark green border, green inner dot
+- **saas (Checboxes saas)**: Filled style — grey border when unselected, green background with white inner dot when selected
+
+---
+
+## States
+
+### Default (Unselected)
+
+<Canvas of={RadioStories.Default} sourceState="shown" />
+
+### Selected
+
+Shows a filled 8×8px inner circle.
+
+<Canvas of={RadioStories.Selected} sourceState="shown" />
+
+### Disabled
+
+<Canvas of={RadioStories.DisabledUnselected} sourceState="shown" />
+<Canvas of={RadioStories.DisabledSelected} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: 18×18px outer ring
+- **Medium (md)**: 20×20px outer ring (default)
+
+<Canvas of={RadioStories.SmallDefault} sourceState="shown" />
+<Canvas of={RadioStories.SmallSelected} sourceState="shown" />
+
+---
+
+## Variants (mp vs saas)
+
+### Checboxes mp (default)
+Outlined style with dark green border and green inner dot.
+
+### Checboxes saas
+Filled style: grey border when unselected, green background with white inner dot when selected.
+
+<Canvas of={RadioStories.SaasDefault} sourceState="shown" />
+<Canvas of={RadioStories.SaasSelected} sourceState="shown" />
+
+---
+
+## Radio Group
+
+Use multiple radios with the same `name` attribute to create a mutually exclusive selection group.
+
+<Canvas of={RadioStories.RadioGroup} sourceState="shown" />
+
+---
+
+## All Variants
+
+<Canvas of={RadioStories.AllVariants} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={RadioStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use radio buttons when only one option can be selected from a group
+- **Do**: Always group radios using the same `name` attribute and wrap in `role="radiogroup"`
+- **Don't**: Use for multi-select scenarios — use checkboxes instead
+- **Accessibility**: Hidden native `<input type="radio">` is used for screen reader support
+- **Accessibility**: Focus ring triggers via keyboard navigation

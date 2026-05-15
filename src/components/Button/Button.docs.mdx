@@ -1,0 +1,99 @@
+{/* Button.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Buttons trigger actions throughout the interface. **Cater Design Systems** — six visual types, three sizes, and icons in four positions.
+
+**Figma mapping** (component set `20:3394`, file `tK5SjqGRgeVr5w5tmxuLDa`)
+
+- **Radius:** Root frame uses **corner radius 999** with shared corner variables → **`rounded-full`** (Radius/full) for every variant, including labelled buttons.
+- **Primary:** **Sherwood Green** (`#073D30`, `bg-brand-sherwood-green`) and **Gossip** label (`#CCF8B9`, `text-brand-gossip`); hover darkens to **Sherwood/Chelsea Gem 900** (`#063126`).
+- **Focus ring:** White double ring + **Sherwood/Chelsea Gem 300** (`#8DE5D0`) on primary (see `Button.tsx` focus shadow).
+
+---
+
+## Types
+
+### Primary
+The main call-to-action. Use for the single most important action on screen.
+
+<Canvas of={ButtonStories.Primary} sourceState="shown" />
+
+### Destructive
+For dangerous or irreversible actions like deleting data.
+
+<Canvas of={ButtonStories.Destructive} sourceState="shown" />
+
+### Outline
+For secondary actions that need clear affordance but less visual weight than Primary.
+
+<Canvas of={ButtonStories.Outline} sourceState="shown" />
+
+### Ghost
+For tertiary actions with minimal visual weight. No border in default state.
+
+<Canvas of={ButtonStories.Ghost} sourceState="shown" />
+
+### Secondary Color
+A softer alternative using **Salem 50** (`#E6F5ED`) with **text title** on top. Good for secondary actions in a green-themed context.
+
+<Canvas of={ButtonStories.SecondaryColor} sourceState="shown" />
+
+### Tertiary Grey
+A neutral option for low-emphasis actions. Uses the surface disabled color as background.
+
+<Canvas of={ButtonStories.TertiaryGrey} sourceState="shown" />
+
+### All Types Side-by-Side
+
+<Canvas of={ButtonStories.AllTypes} sourceState="shown" />
+
+---
+
+## Sizes
+
+Three sizes available.
+
+- **Small**: 8px padding, 14px/21px font, pill corners (Radius/full)
+- **Medium**: 10px padding, 16px/24px font (default)
+- **Large**: 14px padding, 20px/24px font
+
+<Canvas of={ButtonStories.AllSizes} sourceState="shown" />
+
+---
+
+## Icon Positions
+
+Icons can be placed in 4 positions.
+
+<Canvas of={ButtonStories.AllIconPositions} sourceState="shown" />
+
+---
+
+## Disabled States
+
+All button types share the same disabled appearance: Surface Disabled background with Text Disabled color.
+
+<Canvas of={ButtonStories.AllDisabled} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={ButtonStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use Primary buttons for the single most important action on a screen
+- **Do**: Use Destructive for delete, remove, or other irreversible actions
+- **Do**: Pair Outline or Ghost buttons alongside a Primary button for secondary actions
+- **Don't**: Use more than one Primary button in the same section
+- **Don't**: Use Destructive for non-dangerous actions
+- **Accessibility**: All buttons must have visible text or an `aria-label` when using icon-only mode
+- **Accessibility**: Focus states include a visible ring for keyboard navigation

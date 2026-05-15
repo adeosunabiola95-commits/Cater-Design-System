@@ -1,0 +1,47 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as HeaderTextDrawerStories from './HeaderTextDrawer.stories';
+
+<Meta of={HeaderTextDrawerStories} />
+
+# Header Text Drawer
+
+Add Header Text Drawer pattern. A slide-in panel for adding or editing header text.
+
+---
+
+## Overview
+
+The Header Text Drawer is a right-side drawer with:
+- Title "Add Title"
+- Centered body content (header text placeholder + description)
+- Save button
+
+Use for secondary flows where users add or edit header/title content without leaving the main view.
+
+---
+
+## Add Header Text Drawer
+
+<Canvas of={HeaderTextDrawerStories.AddHeaderTextDrawer} sourceState="shown" />
+
+---
+
+## Use in code
+
+```tsx
+import { Drawer, Button } from 'cater-design-systems';
+```
+
+Use **Show code** on the canvas for the full interactive example (`open` state, title, and inner layout).
+
+---
+
+## Specs
+
+| Property | Value |
+|----------|-------|
+| Width (sm) | 381px |
+| Width (md) | 420px |
+| Side | Right (default) |
+| Corner radius | 8px (left side) |
+| Overlay | rgba(15,23,42,0.45) |

@@ -1,0 +1,47 @@
+{/* AlertToastBanner.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as AlertToastBannerStories from './AlertToastBanner.stories';
+
+<Meta of={AlertToastBannerStories} />
+
+# Alert, Toast & Banner
+
+Notification components. Each serves a different use case.
+
+---
+
+## Overview
+
+| Component | Use Case | Layout |
+|-----------|----------|--------|
+| **Alert** | Inline, full-width messages | Single line, colored background, no border |
+| **Toast** | Transient feedback | Compact dark card, short message |
+| **Banner** | Title + description notices | Card with icon, border, title + body |
+
+---
+
+## Animated Example
+
+Click each button to show the corresponding notification with enter/exit animation.
+
+<Canvas of={AlertToastBannerStories.AnimatedExamples} sourceState="shown" />
+
+---
+
+## Use in code
+
+Published entry re-exports these components from the package root:
+
+```tsx
+import { Alert, Toast, Banner, Button } from 'cater-design-systems';
+```
+
+In this repo, `@/` maps to `src/`. Prefer copying **Show code** on the canvas above for a full working example with state.
+
+---
+
+## When to Use
+
+- **Alert**: Form-level or section-level messages (e.g. "Password reset link sent")
+- **Toast**: Quick feedback (e.g. "Payment added", "Saved")
+- **Banner**: Announcements or detailed notices (e.g. "New feature released" with description)

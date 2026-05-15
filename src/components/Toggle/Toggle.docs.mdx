@@ -1,0 +1,68 @@
+{/* Toggle.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ToggleStories from './Toggle.stories';
+
+<Meta of={ToggleStories} />
+
+# Toggle / Switch
+
+A binary on/off switch for toggling settings or preferences. The knob animates between positions and shows a checkmark icon when in the "on" state.
+
+---
+
+## States
+
+### Default Off
+The initial resting state with the knob on the left.
+
+<Canvas of={ToggleStories.Default} sourceState="shown" />
+
+### Default On
+Active state with green track and checkmark in the knob.
+
+<Canvas of={ToggleStories.On} sourceState="shown" />
+
+### Disabled
+
+<Canvas of={ToggleStories.DisabledOff} sourceState="shown" />
+<Canvas of={ToggleStories.DisabledOn} sourceState="shown" />
+
+---
+
+## Sizes
+
+Two sizes available.
+
+- **Small (sm)**: 32×20px track, 16×16px knob
+- **Medium (md)**: 38.4×24px track, 19.2×19.2px knob (default)
+
+<Canvas of={ToggleStories.SmallOff} sourceState="shown" />
+<Canvas of={ToggleStories.SmallOn} sourceState="shown" />
+
+---
+
+## Interactive Example
+
+<Canvas of={ToggleStories.Controlled} sourceState="shown" />
+
+---
+
+## All Variants
+
+<Canvas of={ToggleStories.AllVariants} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={ToggleStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use for binary settings that take effect immediately (e.g., "Enable notifications")
+- **Do**: Provide a visible label next to the toggle
+- **Don't**: Use for actions that require a "Save" step — use a checkbox instead
+- **Accessibility**: Uses `role="switch"` and `aria-checked` for screen readers
+- **Accessibility**: Focus ring appears on keyboard navigation via `focus-visible`

@@ -1,0 +1,90 @@
+{/* MessageBox.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as MessageBoxStories from './MessageBox.stories';
+
+<Meta of={MessageBoxStories} />
+
+# Message Box
+
+A multiline text input (textarea) that shares the same styling and behavior as the Input Field component. Use for longer text entry like messages, feedback, or comments.
+
+Mirrors Input Field styling: same border, shadow, focus ring, typography, and motion animations.
+
+---
+
+## Default
+
+<Canvas of={MessageBoxStories.Default} sourceState="shown" />
+
+---
+
+## With Value
+
+<Canvas of={MessageBoxStories.WithValue} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: 10px vertical padding
+- **Medium (md)**: 12px vertical padding (default)
+
+<Canvas of={MessageBoxStories.Small} sourceState="shown" />
+
+---
+
+## States
+
+### Error
+
+<Canvas of={MessageBoxStories.Error} sourceState="shown" />
+
+### Disabled
+
+<Canvas of={MessageBoxStories.Disabled} sourceState="shown" />
+
+---
+
+## With Clear Icon
+
+The clear icon appears when the textarea has content, with the same animated entrance as Input Field.
+
+<Canvas of={MessageBoxStories.WithClearIcon} sourceState="shown" />
+
+---
+
+## With Leading Icon
+
+<Canvas of={MessageBoxStories.WithLeadingIcon} sourceState="shown" />
+
+---
+
+## All Variants
+
+<Canvas of={MessageBoxStories.AllVariants} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={MessageBoxStories} />
+
+---
+
+## Design Specs (matches Input Field)
+
+- **Border**: 1px `border-default`, `salem-600` on focus
+- **Shadow**: `0 1px 2px rgba(16,24,40,0.05)`
+- **Focus ring**: `0 0 0 2px #CEECDA` (animated)
+- **Typography**: 16px/150%/0.16px, font-medium
+- **Padding**: sm `10px 12px`, md `12px 12px`
+- **Corner radius**: 4px
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use for multi-line content (messages, descriptions, feedback)
+- **Do**: Use Input Field for single-line text
+- **Don't**: Use for short, single-line inputs
+- **Resize**: Default `vertical` allows users to resize height; use `none` for fixed height

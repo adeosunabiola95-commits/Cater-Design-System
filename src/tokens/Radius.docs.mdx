@@ -1,0 +1,34 @@
+{/* Radius.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as RadiusStories from './Radius.stories';
+
+<Meta of={RadiusStories} />
+
+# Radius
+
+Radius tokens from Figma (Radius collection): none, sm, md, lg, xl, 2xl, **modal** (20px dialog shell from Modals), full. Exposed in `src/tokens/radius.ts` and `src/index.css` `@theme`.
+
+## Use in code
+
+**TypeScript**:
+
+```tsx
+import { radius } from '@/tokens';
+
+<div style={{ borderRadius: radius.modal }} />
+```
+
+**CSS variables**:
+
+```css
+border-radius: var(--radius-lg);
+border-radius: var(--radius-modal);
+```
+
+**Tailwind** — use rounded utilities wired to this scale (e.g. `rounded-lg`, `rounded-full`, modal shell uses `radius-modal` / design tokens as in `Button` / `Modal`).
+
+---
+
+## Scale
+
+<Canvas of={RadiusStories.Scale} sourceState="shown" />

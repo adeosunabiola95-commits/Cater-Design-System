@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===== FONTS (Figma: Typography — Family/Display, Family/Body) ===== */
+  --font-title: 'General Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* ===== BRAND COLORS (Figma: Brands collection) ===== */
+  --color-brand-sherwood-green: #073D30;
+  --color-brand-ocean-green: #39B16C;
+  --color-brand-salem: #39B16C;
+  --color-brand-mirage: #101828;
+  --color-brand-chelsea-gem: #AA7326;
+  --color-brand-red: #C22D2C;
+  --color-brand-jewel: #378760;
+  --color-brand-white: #FFFFFF;
+  --color-brand-pink: #FC71EE;
+  --color-brand-orange: #FD7900;
+  --color-brand-gossip: #CCF8B9;
+  --color-brand-white-linen: #F9F3E7;
+
+  /* ===== SALEM SCALE (Figma Primitives — Salem; 500/600 = Ocean Green) ===== */
+  --color-salem-900: #033F1C;
+  --color-salem-800: #055F2B;
+  --color-salem-700: #067E39;
+  --color-salem-600: #39B16C;
+  --color-salem-500: #39B16C;
+  --color-salem-400: #6BC591;
+  --color-salem-300: #9CD8B5;
+  --color-salem-200: #B5E2C8;
+  --color-salem-100: #CEECDA;
+  --color-salem-50: #E6F5ED;
+
+  /* ===== MIRAGE SCALE ===== */
+  --color-mirage-900: #101828;
+  --color-mirage-800: #29344A;
+  --color-mirage-700: #5A626F;
+  --color-mirage-600: #68707C;
+  --color-mirage-500: #777F8A;
+  --color-mirage-400: #B2B8C1;
+  --color-mirage-300: #D0D5DD;
+  --color-mirage-200: #D9DDE4;
+  --color-mirage-100: #F1F2F5;
+  --color-mirage-50: #FAFBFC;
+
+  /* ===== CHELSEA GEM (GOLD) SCALE ===== */
+  --color-chelsea-gem-900: #593400;
+  --color-chelsea-gem-800: #774600;
+  --color-chelsea-gem-700: #955700;
+  --color-chelsea-gem-600: #AA7326;
+  --color-chelsea-gem-500: #BF8F4C;
+  --color-chelsea-gem-400: #D5AC72;
+  --color-chelsea-gem-300: #DFBA85;
+  --color-chelsea-gem-200: #EAC898;
+  --color-chelsea-gem-100: #F4D6AB;
+  --color-chelsea-gem-50: #FFE4BE;
+
+  /* ===== SHERWOOD TEAL SCALE (Figma: Sherwood Green/Chelsea Gem 50–900) ===== */
+  --color-sherwood-chelsea-gem-900: #063126;
+  --color-sherwood-chelsea-gem-800: #073D30;
+  --color-sherwood-chelsea-gem-700: #1E6151;
+  --color-sherwood-chelsea-gem-600: #368572;
+  --color-sherwood-chelsea-gem-500: #4DA892;
+  --color-sherwood-chelsea-gem-400: #59BAA3;
+  --color-sherwood-chelsea-gem-300: #8DE5D0;
+  --color-sherwood-chelsea-gem-200: #A9EBDC;
+  --color-sherwood-chelsea-gem-100: #C6F2E7;
+  --color-sherwood-chelsea-gem-50: #D4F5ED;
+
+  /* ===== BRIGHT RED SCALE ===== */
+  --color-bright-red-900: #6B0100;
+  --color-bright-red-800: #8F0100;
+  --color-bright-red-700: #B30100;
+  --color-bright-red-600: #C22D2C;
+  --color-bright-red-500: #D15958;
+  --color-bright-red-400: #E18484;
+  --color-bright-red-300: #E89A9A;
+  --color-bright-red-200: #F0B0B0;
+  --color-bright-red-100: #F7C6C6;
+  --color-bright-red-50: #FFDCDC;
+  --color-bright-red-25: #FFE9E9;
+
+  /* ===== JEWEL SCALE ===== */
+  --color-jewel-900: #0D4128;
+  --color-jewel-800: #125736;
+  --color-jewel-700: #166D43;
+  --color-jewel-600: #378760;
+  --color-jewel-500: #58A27E;
+  --color-jewel-400: #78BC9B;
+  --color-jewel-300: #89C9AA;
+  --color-jewel-200: #99D7B9;
+  --color-jewel-100: #AAE4C7;
+  --color-jewel-50: #BAF1D6;
+
+  /* ===== BLUSH PINK SCALE ===== */
+  --color-blush-pink-900: #8E2E84;
+  --color-blush-pink-800: #B244A7;
+  --color-blush-pink-700: #D75BCB;
+  --color-blush-pink-600: #FC71EE;
+  --color-blush-pink-500: #FD8DF1;
+  --color-blush-pink-400: #FDAAF5;
+  --color-blush-pink-300: #FEC6F8;
+  --color-blush-pink-200: #FED4FA;
+  --color-blush-pink-100: #FEE3FC;
+  --color-blush-pink-50: #FFF1FD;
+
+  /* ===== FLUSH ORANGE SCALE ===== */
+  --color-flush-orange-900: #653000;
+  --color-flush-orange-800: #984900;
+  --color-flush-orange-700: #CA6100;
+  --color-flush-orange-600: #FD7900;
+  --color-flush-orange-500: #FD9433;
+  --color-flush-orange-400: #FEAF66;
+  --color-flush-orange-300: #FEC999;
+  --color-flush-orange-200: #FED7B2;
+  --color-flush-orange-100: #FFE4CC;
+  --color-flush-orange-50: #FFF2E5;
+
+  /* ===== SEMANTIC: SURFACE (Figma: Tokens) ===== */
+  --color-surface-default: #F1F2F5;
+  --color-surface-subtle: #FAFBFC;
+  --color-surface-disabled: #F1F2F5;
+
+  /* ===== SEMANTIC: TEXT (Figma: Color/Text/*) ===== */
+  --color-text-title: #101828;
+  --color-text-subtitle: #68707C;
+  --color-text-body: #29344A;
+  --color-text-caption: #B2B8C1;
+  --color-text-negative: #D9DDE4;
+  --color-text-disabled: #B2B8C1;
+
+  /* ===== SEMANTIC: BORDER ===== */
+  --color-border-default: #D9DDE4;
+  --color-border-darker: #D0D5DD;
+  --color-border-disabled: #F1F2F5;
+  /* App divider (no separate Figma variable); aligned to Mirage 100 */
+  --color-border-subtle: #F1F2F5;
+  /* Figma: Dialogue/outline */
+  --color-dialogue-outline: #D9DDE480;
+
+  /* ===== SEMANTIC: ERROR ===== */
+  --color-error-bg-darker: #C22D2C;
+  --color-error-bg-subtle: #FFDCDC;
+  --color-error-border: #E89A9A;
+  --color-error-text-darker: #FFFFFF;
+  --color-error-text-subtle: #6B0100;
+  --color-error-icon-darker: #FFFFFF;
+  --color-error-icon-subtle: #8F0100;
+  --color-error-action: #FFFFFF;
+
+  /* ===== SEMANTIC: WARNING ===== */
+  --color-warning-bg-darker: #AA7326;
+  --color-warning-bg-subtle: #FFE4BE;
+  --color-warning-border: #DFBA85;
+  --color-warning-text-darker: #FFFFFF;
+  --color-warning-text-subtle: #593400;
+  --color-warning-icon-darker: #FFFFFF;
+  --color-warning-icon-subtle: #774600;
+  --color-warning-action: #FFFFFF;
+
+  /* ===== SEMANTIC: SUCCESS ===== */
+  --color-success-bg-darker: #378760;
+  --color-success-bg-subtle: #BAF1D6;
+  --color-success-border: #89C9AA;
+  --color-success-text-darker: #FFFFFF;
+  --color-success-text-subtle: #0D4128;
+  --color-success-icon-darker: #FFFFFF;
+  --color-success-icon-subtle: #125736;
+  --color-success-action: #FFFFFF;
+
+  /* ===== SEMANTIC: INFO ===== */
+  --color-info-bg-darker: #FC71EE;
+  --color-info-bg-subtle: #FEE3FC;
+  --color-info-border: #FEC6F8;
+  --color-info-text-darker: #FFFFFF;
+  --color-info-text-subtle: #8E2E84;
+  --color-info-icon-darker: #FFFFFF;
+  --color-info-icon-subtle: #B244A7;
+  --color-info-action: #FFFFFF;
+
+  /* ===== SHADOWS (code; no Figma variables in library export) ===== */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.10);
+  --shadow-md: 0 2px 4px -2px rgba(16, 24, 40, 0.06), 0 4px 8px -2px rgba(16, 24, 40, 0.10);
+  --shadow-lg: 0 4px 6px -2px rgba(16, 24, 40, 0.03), 0 12px 16px -4px rgba(16, 24, 40, 0.08);
+  --shadow-xl: 0 8px 8px -4px rgba(16, 24, 40, 0.03), 0 20px 24px -4px rgba(16, 24, 40, 0.08);
+
+  /* ===== FOCUS RINGS ===== */
+  --shadow-focus-highlight: 0 0 0 2px #CEECDA;
+  --shadow-focus-error: 0 0 0 2px #FFDCDC;
+  --shadow-focus-button: 0 0 0 2px #FFFFFF, 0 0 0 4px #CEECDA;
+
+  /* ===== SPACING (Figma: Spacing/* — px values) ===== */
+  --spacing-0: 0px;
+  --spacing-0_5: 2px;
+  --spacing-1: 4px;
+  --spacing-1_5: 6px;
+  --spacing-2: 8px;
+  --spacing-2_5: 10px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  /* Figma deprecated Spacing/999 — prefer Radius/full for pills */
+  --spacing-full: 999px;
+
+  /* ===== RADIUS (Figma: Radius collection) ===== */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  /* Figma Modals / Desktop Bridge — dialog shell (node 4651:9942) */
+  --radius-modal: 20px;
+  --radius-full: 9999px;
+}
+
+/* ===== SHARP RENDERING ===== */
+img,
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+}

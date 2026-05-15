@@ -1,0 +1,112 @@
+{/* InputField.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as InputFieldStories from './InputField.stories';
+
+<Meta of={InputFieldStories} />
+
+# Input Field
+
+Input fields allow users to enter and edit text. Supports 2 sizes, 5 types with optional leading/trailing icons and suffix panels, and error states with accessible validation messaging.
+
+---
+
+## Default
+
+A standard text input with a label, trailing chevron, and helper text.
+
+<Canvas of={InputFieldStories.Default} sourceState="shown" />
+
+## With Value
+
+An input field with pre-filled content.
+
+<Canvas of={InputFieldStories.WithValue} sourceState="shown" />
+
+## Error State
+
+When validation fails, the border changes to `error-border`, the focus ring turns red, and the hint text switches to `error-text-subtle` color.
+
+<Canvas of={InputFieldStories.Error} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: `10px` vertical / `12px` horizontal padding, `44px` field height
+- **Medium (md)**: `12px` vertical / `12px` horizontal padding, `48px` field height
+
+<Canvas of={InputFieldStories.AllSizes} sourceState="shown" />
+
+---
+
+## Types
+
+### Name
+
+Simple text input with a trailing `ArrowDown02` icon.
+
+<Canvas of={InputFieldStories.NameType} sourceState="shown" />
+
+### Company
+
+Leading `Search` icon for lookup. The `Cancel` icon only appears when the input has a value, and clicking it clears the field.
+
+<Canvas of={InputFieldStories.CompanyType} sourceState="shown" />
+
+### Amount
+
+Two-part layout: white input area on the left, grey suffix panel on the right with "USD" text and an `ArrowDown02` icon for currency selection.
+
+<Canvas of={InputFieldStories.AmountType} sourceState="shown" />
+
+### Date
+
+Trailing `Date` icon for date picker trigger.
+
+<Canvas of={InputFieldStories.DateType} sourceState="shown" />
+
+### Copy
+
+Two-part layout: white input area on the left, grey suffix panel on the right with a `Copy` icon and "Copy" label. Clicking copies the value to clipboard.
+
+<Canvas of={InputFieldStories.CopyType} sourceState="shown" />
+
+### All Types Side-by-Side
+
+<Canvas of={InputFieldStories.AllTypes} sourceState="shown" />
+
+---
+
+## Action States
+
+Default and error states shown side-by-side.
+
+<Canvas of={InputFieldStories.AllActions} sourceState="shown" />
+
+---
+
+## Disabled
+
+Disabled inputs have reduced opacity and a not-allowed cursor.
+
+<Canvas of={InputFieldStories.Disabled} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={InputFieldStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Always include a label for accessibility
+- **Do**: Provide hint text to clarify what the user should enter
+- **Do**: Use the error action state with a descriptive error message
+- **Don't**: Use placeholder text as a replacement for labels
+- **Don't**: Disable inputs without explaining why
+- **Accessibility**: The input is linked to its label via `htmlFor`/`id`
+- **Accessibility**: Hint text is connected to the input via `aria-describedby`
+- **Accessibility**: Error state sets `aria-invalid` on the input element
+- **Accessibility**: Focus ring uses `box-shadow` for visible focus indication

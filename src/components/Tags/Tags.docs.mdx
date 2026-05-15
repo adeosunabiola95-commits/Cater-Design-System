@@ -1,0 +1,93 @@
+{/* Tags.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as TagsStories from './Tags.stories';
+
+<Meta of={TagsStories} />
+
+# Tags
+
+Tags are pill-shaped labels used for categorization, filtering, or selection. The Cater Design Systems tag system provides 3 types (Base, with checkbox, with flags), 4 states (default, with cancel, hover, with tag), and 2 sizes.
+
+---
+
+## Types
+
+### Base
+Simple text-only tag. Use for static labels or non-interactive categories.
+
+<Canvas of={TagsStories.Base} sourceState="shown" />
+
+### With Checkbox
+Tag with a leading checkbox. Use for multi-select filters or toggles.
+
+<Canvas of={TagsStories.WithCheckbox} sourceState="shown" />
+
+### With Flags
+Tag with a leading flag icon. Use for flagged or highlighted items.
+
+<Canvas of={TagsStories.WithFlags} sourceState="shown" />
+
+### All Types
+
+<Canvas of={TagsStories.AllTypes} sourceState="shown" />
+
+---
+
+## States
+
+### Default
+Standard appearance with white background and light grey border.
+
+<Canvas of={TagsStories.Default} sourceState="shown" />
+
+### With Cancel
+Tag with a remove/cancel button. Provide `onRemove` to handle removal.
+
+<Canvas of={TagsStories.WithCancel} sourceState="shown" />
+
+### Hover
+Hover state with slightly darker background (mirage-50).
+
+<Canvas of={TagsStories.Hover} sourceState="shown" />
+
+### With Tag (count)
+Tag with an optional count or secondary label. Use `count` prop.
+
+<Canvas of={TagsStories.WithTag} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: 26px height, 2px vertical / 6px horizontal padding, 13px font
+- **Medium (md)**: 28px height, 4px vertical / 6px horizontal padding, 14px font
+
+<Canvas of={TagsStories.AllSizes} sourceState="shown" />
+
+---
+
+## Interactive Examples
+
+### With Cancel Button
+
+<Canvas of={TagsStories.InteractiveWithCancel} sourceState="shown" />
+
+### With Checkbox Toggle
+
+<Canvas of={TagsStories.InteractiveCheckbox} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={TagsStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use tags for filter chips, category labels, or multi-select options
+- **Do**: Use "with cancel" when tags can be removed (e.g. applied filters)
+- **Do**: Use "with checkbox" when tags represent selectable options
+- **Don't**: Use tags for long text—keep labels short
+- **Don't**: Mix too many tag types in a single row

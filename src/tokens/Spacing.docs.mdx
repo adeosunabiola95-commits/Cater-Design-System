@@ -1,0 +1,42 @@
+{/* Spacing.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as SpacingStories from './Spacing.stories';
+
+<Meta of={SpacingStories} />
+
+# Spacing
+
+Spacing tokens from Figma (**Spacing/**\*). Use **Tokens/Radius** for `Radius/full` (pills); Spacing/999 is deprecated in Figma.
+
+## Use in code
+
+**TypeScript**:
+
+```tsx
+import { spacing } from '@/tokens';
+
+<div style={{ padding: spacing[4], gap: spacing[2] }} />
+```
+
+**CSS variables** (`src/index.css`):
+
+```css
+padding: var(--spacing-4);
+gap: var(--spacing-2);
+```
+
+Tailwind spacing utilities align to this scale when you use the design-system theme (e.g. `p-4`, `gap-2`).
+
+---
+
+## Scale
+
+<Canvas of={SpacingStories.Scale} sourceState="shown" />
+
+---
+
+## Applied
+
+Visual demonstration of each spacing value applied as padding.
+
+<Canvas of={SpacingStories.Applied} sourceState="shown" />

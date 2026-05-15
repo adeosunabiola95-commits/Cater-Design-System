@@ -1,0 +1,46 @@
+{/* Typography.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+Typography tokens from Figma (Typography collection): **Family/Display** (General Sans), **Family/Body** (Inter), plus sizes, weights, line heights, and letter-spacing tokens.
+
+## Use in code
+
+**TypeScript**:
+
+```tsx
+import { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing } from '@/tokens';
+
+const styles = {
+  fontFamily: fontFamily.body,
+  fontSize: fontSize.md,
+  fontWeight: fontWeight.semibold,
+  lineHeight: lineHeight.normal,
+};
+```
+
+**CSS / theme** — `src/index.css` exposes `--font-title`, `--font-body`, and type scale variables on `@theme`. In stories, use `font-title` / `font-body` Tailwind classes where configured.
+
+---
+
+## Font Families
+
+<Canvas of={TypographyStories.FontFamilies} sourceState="shown" />
+
+---
+
+## Type Scale
+
+Recommended sizes for headings, body text, and captions.
+
+<Canvas of={TypographyStories.Scale} sourceState="shown" />
+
+---
+
+## Weight, line-height, letter-spacing
+
+<Canvas of={TypographyStories.WeightAndRhythm} sourceState="shown" />

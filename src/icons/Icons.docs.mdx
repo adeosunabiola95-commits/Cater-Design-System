@@ -1,0 +1,106 @@
+{/* Icons.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as IconStories from './Icons.stories';
+
+<Meta of={IconStories} />
+
+# Icons
+
+The icon library contains **313 icons** at 24x24. All use `currentColor` for styling flexibility. On any story below, open **Show code** to copy the rendered snippet.
+
+---
+
+## Browse All Icons
+
+Click any icon in the gallery to copy its import statement.
+
+<Canvas of={IconStories.Gallery} sourceState="shown" />
+
+---
+
+## By Category
+
+Icons are organized into semantic categories for easier discovery.
+
+<Canvas of={IconStories.ByCategory} sourceState="shown" />
+
+---
+
+## Usage
+
+### Individual import (recommended for production)
+
+The SVG **drawer/menu icon** is exported as **`DrawerIcon`** so it does not clash with the layout **`Drawer`** component (`cater-design-systems` / `@/components/Modal`).
+
+Import only the icons you need for optimal tree-shaking:
+
+```tsx
+import { Close, Search, Home, DrawerIcon } from '@/icons';
+
+function MyComponent() {
+  return (
+    <button>
+      <Close width={20} height={20} />
+    </button>
+  );
+}
+```
+
+### Icon wrapper (for dynamic usage)
+
+Use the `Icon` component when the icon name is determined at runtime:
+
+```tsx
+import { Icon } from '@/icons';
+
+function DynamicIcon({ iconName }: { iconName: string }) {
+  return <Icon name={iconName} size={24} className="text-mirage-900" />;
+}
+```
+
+---
+
+## Sizing
+
+Icons default to 24x24 but accept any `width` and `height` values via standard SVG props.
+
+<Canvas of={IconStories.Sizes} sourceState="shown" />
+
+---
+
+## Color
+
+All icons use `currentColor` for their fill/stroke, so they automatically inherit the parent text color. Use Tailwind `text-*` utilities to colorize them.
+
+<Canvas of={IconStories.Colors} sourceState="shown" />
+
+---
+
+## Props
+
+Every icon component accepts all standard SVG element props (`SVGProps<SVGSVGElement>`):
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `width` | `number \| string` | `24` | Icon width |
+| `height` | `number \| string` | `24` | Icon height |
+| `className` | `string` | — | CSS classes (use Tailwind `text-*` for color) |
+| `style` | `CSSProperties` | — | Inline styles |
+| `onClick` | `function` | — | Click handler |
+
+### Icon wrapper additional props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `IconName` | — | Name of the icon to render (required) |
+| `size` | `number` | `24` | Sets both width and height |
+
+---
+
+## Guidelines
+
+- **Use semantic icons** that clearly communicate their purpose
+- **Maintain consistent sizing** within the same context (e.g., all toolbar icons at 20px)
+- **Pair with text** when the icon meaning may be ambiguous
+- **Use `currentColor`** inheritance rather than hardcoding colors on individual icons
+- **Import individually** for production builds to enable tree-shaking

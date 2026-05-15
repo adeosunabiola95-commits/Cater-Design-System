@@ -1,0 +1,81 @@
+{/* DatePicker.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+Date picker with single date, dual date (range), and pre-set range variants.
+
+**Figma:** COMPONENT_SET **Date Picker** `278:1649` (Desktop Bridge). Selected endpoints: **Sherwood Green** + **Gossip**. **In-range** days and **hover / pointer** on cells: **Salem 50**. Frame stroke **Dialogue/outline**.
+
+---
+
+## Overview
+
+The DatePicker supports three variants:
+
+- **Single date**: One calendar for selecting a single date. 377×331px.
+- **Dual dates**: Two side-by-side calendars for range selection. 660×331px.
+- **Pre-set range**: Preset buttons (Last 7 days, Last 30 days, etc.) plus calendar. 545px wide.
+
+---
+
+## Variants
+
+### Single Date
+
+Single calendar with month navigation.
+
+<Canvas of={DatePickerStories.SingleDate} sourceState="shown" />
+
+### With Disabled Dates
+
+Uses `isDateDisabled` to disable weekends.
+
+<Canvas of={DatePickerStories.WithDisabledDates} sourceState="shown" />
+
+### Dual Date
+
+Dual date picker for range selection. Two calendar panels, 24px padding, 20px gap.
+
+<Canvas of={DatePickerStories.DualDate} sourceState="shown" />
+
+### Dual Date With Disabled Dates
+
+Dual date picker with weekends disabled.
+
+<Canvas of={DatePickerStories.DualDateWithDisabledDates} sourceState="shown" />
+
+### Preset Range
+
+Pre-set range date picker. Preset buttons (Last 7 days, Last 30 days, This month, Last month) on the left, calendar on the right. Header shows the selected range.
+
+<Canvas of={DatePickerStories.PresetRange} sourceState="shown" />
+
+### Preset Range With Custom Presets
+
+Pre-set range with custom presets. Use the `presets` prop to define labels and date ranges.
+
+<Canvas of={DatePickerStories.PresetRangeWithCustomPresets} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={DatePickerStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use single variant for due dates, appointment scheduling, or single-date forms
+- **Do**: Use dual variant for date range filters (e.g. reports, analytics)
+- **Do**: Use preset-range when users commonly select ranges like "Last 7 days" or "This month"
+- **Do**: Provide `isDateDisabled` to block past dates, weekends, or holidays
+- **Do**: Use controlled mode (`value` + `onChange`) when integrating with forms
+- **Don't**: Use for time selection—DatePicker is date-only
+- **Accessibility**: Month nav buttons have `aria-label="Previous month"` / `"Next month"`
+- **Accessibility**: Date cells use `aria-pressed` for selection and `aria-current="date"` for today
+- **Accessibility**: Dual variant has `role="application"` and `aria-label="Dual date picker"`

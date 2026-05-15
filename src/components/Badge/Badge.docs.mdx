@@ -1,0 +1,100 @@
+{/* Badge.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Badges display short labels or status indicators. Provides 5 colors, 2 sizes, optional outline and icon, and 2 background intensity states.
+
+---
+
+## Badge Info
+
+Badges in context with checkboxes—Recommended (indigo) and Unavailable (grey) on menu items.
+
+<Canvas of={BadgeStories.BadgeInfo} sourceState="shown" />
+
+---
+
+## Colors
+
+### Indigo
+Uses the Blush Pink scale. Good for info or highlight states.
+
+<Canvas of={BadgeStories.Indigo} sourceState="shown" />
+
+### Green
+Uses the Salem scale. Good for success or positive states.
+
+<Canvas of={BadgeStories.Green} sourceState="shown" />
+
+### Red
+Uses the Bright Red scale. Good for error or alert states.
+
+<Canvas of={BadgeStories.Red} sourceState="shown" />
+
+### Orange
+Uses the Flush Orange scale. Good for warning states.
+
+<Canvas of={BadgeStories.Orange} sourceState="shown" />
+
+### Grey
+Uses the Mirage scale. Good for neutral or inactive states.
+
+<Canvas of={BadgeStories.Grey} sourceState="shown" />
+
+### All Colors
+
+<Canvas of={BadgeStories.AllColors} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: 20px height, 6px horizontal padding, 13px font
+- **Medium (md)**: 24px height, 8px horizontal padding, 14px font
+
+<Canvas of={BadgeStories.AllSizes} sourceState="shown" />
+
+---
+
+## Outline
+
+Outline badges use a light background with a colored border.
+
+<Canvas of={BadgeStories.AllOutline} sourceState="shown" />
+
+---
+
+## With Icon
+
+Badges can display an icon before the label.
+
+<Canvas of={BadgeStories.AllColorsWithIcon} sourceState="shown" />
+
+---
+
+## State (Light vs Lighter)
+
+- **Light**: More saturated background (e.g. blush-pink-100)
+- **Lighter**: Softer background (e.g. blush-pink-50)
+
+<Canvas of={BadgeStories.AllLighter} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={BadgeStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use badges for short labels, counts, or status
+- **Do**: Match color to semantic meaning (green=success, red=error, etc.)
+- **Do**: Use outline for lower emphasis or when placed on colored backgrounds
+- **Don't**: Use badges for long text—keep labels concise
+- **Don't**: Mix too many badge colors in a single view

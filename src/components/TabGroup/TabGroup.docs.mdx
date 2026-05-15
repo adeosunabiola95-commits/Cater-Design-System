@@ -1,0 +1,74 @@
+{/* TabGroup.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as TabGroupStories from './TabGroup.stories';
+
+<Meta of={TabGroupStories} />
+
+# Tab Group
+
+Interactive tab groups for switching between views or sections.
+
+---
+
+## Variants
+
+### Outline tab
+
+Underline-style tabs. Use for primary navigation.
+
+<Canvas of={TabGroupStories.OutlineTab} sourceState="shown" />
+
+### Buttongroup
+
+Pill-style tabs. Use for filters or segmented controls.
+
+<Canvas of={TabGroupStories.Buttongroup} sourceState="shown" />
+
+### Buttongroup full width
+
+Tabs stretch to fill the container width equally. Set `fullWidth` when variant is `buttongroup`.
+
+<Canvas of={TabGroupStories.ButtongroupFullWidth} sourceState="shown" />
+
+### Buttongroup with badge (counter)
+
+Badge shows a numeric count. Use `badge: number` on each tab item.
+
+<Canvas of={TabGroupStories.WithBadge} sourceState="shown" />
+
+<Canvas of={TabGroupStories.ButtongroupWithBadgeCounters} sourceState="shown" />
+
+### Medium size
+
+<Canvas of={TabGroupStories.MediumSize} sourceState="shown" />
+
+---
+
+## Interactive example
+
+Click a tab to switch content. All examples are fully interactive.
+
+<Canvas of={TabGroupStories.InteractiveExample} sourceState="shown" />
+
+---
+
+## All variants
+
+<Canvas of={TabGroupStories.AllVariants} sourceState="shown" />
+
+---
+
+## Use in code
+
+```tsx
+import { TabGroup } from '@/components/TabGroup';
+// or: import { TabGroup } from 'cater-design-systems';
+```
+
+Use **Show code** on the interactive example for a full copy-paste setup with state.
+
+---
+
+## Props
+
+<ArgTypes of={TabGroupStories} />

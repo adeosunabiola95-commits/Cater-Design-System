@@ -1,0 +1,47 @@
+{/* Banner.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as BannerStories from './Banner.stories';
+
+<Meta of={BannerStories} />
+
+# Banner
+
+Banners display title + description with a leading icon and semantic states. Card-style notifications with border and optional close button.
+
+---
+
+## States
+
+Five semantic states with distinct background, border, and icon colors.
+
+<Canvas of={BannerStories.AllStates} sourceState="shown" />
+
+- **Success**: Green theme (salem-50 bg, salem-300 border). Alert02 icon in solid green rounded square container (4px radius). Use for confirmations.
+- **Info**: Pink theme (blush-pink-50 bg, blush-pink-300 border). Alert02 icon in solid pink rounded square container (4px radius). Use for announcements.
+- **Error**: Red theme (bright-red-25 bg, bright-red-200 border). Alert02 icon in solid red rounded square container (4px radius). Use for errors.
+- **Warning**: Orange theme (flush-orange-50 bg, flush-orange-300 border). Alert02 icon in solid orange rounded square container (4px radius). Use for cautions.
+- **Grey**: Neutral theme (mirage-100 bg, mirage-300 border). Alert02 icon in solid grey rounded square container (4px radius). Use for neutral notices.
+
+---
+
+## Example: Animated
+
+Click the button to show a Banner with enter/exit animation.
+
+<Canvas of={BannerStories.AnimatedExample} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={BannerStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use Banner when you need a title + description (more context than Alert)
+- **Do**: Match state to semantic meaning
+- **Do**: Use `iconElement` to override the default icon per state
+- **Don't**: Use Banner for single-line messages—use Alert or Toast instead
+- **Don't**: Overload the description—keep it concise

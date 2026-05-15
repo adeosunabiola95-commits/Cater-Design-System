@@ -1,0 +1,114 @@
+{/* Home — zeroheight-style foundation landing; package.json --initial-path */}
+import { Meta, AnchorMdx } from '@storybook/addon-docs/blocks';
+import { Home, Search, Settings, Stars } from './icons';
+
+<Meta title="Introduction" />
+
+<div className="intro-hero">
+  <p className="intro-overline">Foundation</p>
+  <h1 className="intro-hero-heading">Foundation</h1>
+  <p className="intro-hero-desc">
+    The visual language that underpins Cater products—the color styles, typography, icons, and spacing that align our
+    brand, Figma, and engineering in one system.
+  </p>
+</div>
+
+<div className="intro-actions" role="list">
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-colors--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--colors" aria-hidden="true">
+      <span className="intro-swatch" style={{ background: '#073D30' }} />
+      <span className="intro-swatch" style={{ background: '#39B16C' }} />
+      <span className="intro-swatch" style={{ background: '#CCF8B9' }} />
+      <span className="intro-swatch" style={{ background: '#AA7326' }} />
+      <span className="intro-swatch" style={{ background: '#FC71EE' }} />
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Colors</span>
+      <span className="intro-action-desc">Brand, primitive, and semantic color tokens.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-typography--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--type" aria-hidden="true">
+      <span className="intro-type-sample-lg">Aa</span>
+      <span className="intro-type-sample-sm">Body and display styles</span>
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Typography</span>
+      <span className="intro-action-desc">Type scale, weights, and rhythm from Figma.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-icons--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--icons" aria-hidden="true">
+      <Search width={28} height={28} className="intro-icon-sample" />
+      <Home width={28} height={28} className="intro-icon-sample" />
+      <Settings width={28} height={28} className="intro-icon-sample" />
+      <Stars width={28} height={28} className="intro-icon-sample" />
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Icons</span>
+      <span className="intro-action-desc">Search, import, and use icons in product UI.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-spacing--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--spacing" aria-hidden="true">
+      <span className="intro-space-bar intro-space-bar--1" />
+      <span className="intro-space-bar intro-space-bar--2" />
+      <span className="intro-space-bar intro-space-bar--3" />
+      <span className="intro-space-bar intro-space-bar--4" />
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Spacing</span>
+      <span className="intro-action-desc">Spacing scale and layout variables.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-radius--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--radius" aria-hidden="true">
+      <span className="intro-radius-chip intro-radius-chip--sm" />
+      <span className="intro-radius-chip intro-radius-chip--md" />
+      <span className="intro-radius-chip intro-radius-chip--lg" />
+      <span className="intro-radius-chip intro-radius-chip--full" />
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Radius</span>
+      <span className="intro-action-desc">Corner radii for surfaces, controls, and modals.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-shadows--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--shadows" aria-hidden="true">
+      <span className="intro-shadow-tile intro-shadow-tile--sm" />
+      <span className="intro-shadow-tile intro-shadow-tile--md" />
+      <span className="intro-shadow-tile intro-shadow-tile--lg" />
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Shadows</span>
+      <span className="intro-action-desc">Elevation tokens for depth and hierarchy.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/components-button--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--button" aria-hidden="true">
+      <span className="intro-btn-chip">Button</span>
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Button</span>
+      <span className="intro-action-desc">Types, sizes, icons, and disabled states.</span>
+    </div>
+  </AnchorMdx>
+
+  <AnchorMdx className="intro-action-card" href="?path=/docs/components-modal--docs" target="_self" role="listitem">
+    <div className="intro-action-visual intro-action-visual--modal" aria-hidden="true">
+      <span className="intro-modal-shell">
+        <span className="intro-modal-body" />
+      </span>
+    </div>
+    <div className="intro-action-body">
+      <span className="intro-action-title">Modal</span>
+      <span className="intro-action-desc">Dialogs for confirm, task, and picker flows.</span>
+    </div>
+  </AnchorMdx>
+</div>

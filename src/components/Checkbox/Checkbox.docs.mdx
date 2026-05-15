@@ -1,0 +1,102 @@
+{/* Checkbox.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+A checkbox component for selecting one or multiple options from a list. Supports checked, unchecked, and indeterminate states.
+
+Two visual variants:
+- **mp (Checboxes mp)**: Outlined style — dark green border, green checkmark on white background
+- **saas (Checboxes saas)**: Filled style — grey border when unchecked, green background with white checkmark when checked
+
+---
+
+## States
+
+### Default (Unchecked)
+
+<Canvas of={CheckboxStories.Default} sourceState="shown" />
+
+### Checked
+
+Shows a tick-02 checkmark icon inside the box.
+
+<Canvas of={CheckboxStories.Checked} sourceState="shown" />
+
+### Indeterminate
+
+Shows a horizontal dash for partial selection (e.g., "Select All" with some children checked).
+
+<Canvas of={CheckboxStories.Indeterminate} sourceState="shown" />
+
+### Disabled
+
+<Canvas of={CheckboxStories.DisabledUnchecked} sourceState="shown" />
+<Canvas of={CheckboxStories.DisabledChecked} sourceState="shown" />
+
+---
+
+## Sizes
+
+- **Small (sm)**: 18×18px box, 14×14px icon
+- **Medium (md)**: 20×20px box, 16×16px icon (default)
+
+<Canvas of={CheckboxStories.SmallDefault} sourceState="shown" />
+<Canvas of={CheckboxStories.SmallChecked} sourceState="shown" />
+
+---
+
+## Variants (mp vs saas)
+
+### Checboxes mp (default)
+Outlined style with dark green border and green checkmark.
+
+### Checboxes saas
+Filled style: grey border when unchecked, green background with white checkmark when checked.
+
+<Canvas of={CheckboxStories.SaasDefault} sourceState="shown" />
+<Canvas of={CheckboxStories.SaasChecked} sourceState="shown" />
+<Canvas of={CheckboxStories.SaasIndeterminate} sourceState="shown" />
+
+---
+
+## Checkbox Group
+
+Use multiple checkboxes together with a "Select All" parent that reflects the indeterminate state.
+
+<Canvas of={CheckboxStories.CheckboxGroup} sourceState="shown" />
+
+---
+
+## Checkbox group items
+
+Row layout for selectable campaign-style items: icon, name, description, and checkbox. Use for lists where each row can be selected.
+
+<Canvas of={CheckboxStories.CheckboxGroupItems} sourceState="shown" />
+
+<Canvas of={CheckboxStories.CheckboxGroupItemsWithIcon} sourceState="shown" />
+
+---
+
+## All Variants
+
+<Canvas of={CheckboxStories.AllVariants} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={CheckboxStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use checkboxes when users can select zero, one, or multiple items
+- **Do**: Use the indeterminate state for a parent checkbox in a nested group
+- **Don't**: Use checkboxes when only one option can be selected — use radio buttons instead
+- **Accessibility**: Hidden native `<input type="checkbox">` is used for screen reader support
+- **Accessibility**: Focus ring triggers via keyboard navigation on the label wrapper

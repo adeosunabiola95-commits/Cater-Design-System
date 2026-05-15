@@ -1,0 +1,47 @@
+{/* DateInput.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as DateInputStories from './DateInput.stories';
+
+<Meta of={DateInputStories} />
+
+# DateInput
+
+Date input field that opens the single-date calendar in a popover when clicked. Combines InputField with DatePicker for date selection.
+
+---
+
+## Overview
+
+The DateInput component provides a date picker experience within an input field. Clicking the field opens a popover calendar (single-date variant) for date selection. Supports disabled dates, default values, and sizes (sm, md).
+
+---
+
+## Variants
+
+### Default
+
+<Canvas of={DateInputStories.Default} sourceState="shown" />
+
+### With Default Value
+
+<Canvas of={DateInputStories.WithDefaultValue} sourceState="shown" />
+
+### With Disabled Dates
+
+Uses `isDateDisabled` to disable weekends or other date ranges.
+
+<Canvas of={DateInputStories.WithDisabledDates} sourceState="shown" />
+
+### Small Size
+
+<Canvas of={DateInputStories.Small} sourceState="shown" />
+
+### Disabled
+
+<Canvas of={DateInputStories.Disabled} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={DateInputStories} />

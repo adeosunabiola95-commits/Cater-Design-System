@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build / Storybook output (CI builds for GitHub Pages)
+storybook-static/
+dist/
+build/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Logs & debug
+*.log
+npm-debug.log*
+
+# Test / coverage
+coverage/
+playwright-report/
+test-results/
+.vitest/
+
+# Caches
+.cache/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local IDE (uncomment if you don't share Cursor rules)
+# .cursor/

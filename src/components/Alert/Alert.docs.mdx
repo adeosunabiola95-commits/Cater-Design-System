@@ -1,0 +1,47 @@
+{/* Alert.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Alerts display inline messages with semantic states. Full-width, single-line notifications with optional close button.
+
+---
+
+## States
+
+Five semantic states. Each uses a distinct background color.
+
+<Canvas of={AlertStories.AllStates} sourceState="shown" />
+
+- **Success**: Green background (salem-300). Use for confirmations, success messages.
+- **Info**: Pink background (blush-pink-300). Use for informational notices.
+- **Error**: Red background (bright-red-200). Use for errors or critical issues.
+- **Warning**: Orange background (flush-orange-300). Use for cautions.
+- **Grey**: Neutral background (mirage-200). Use for neutral or low-emphasis messages.
+
+---
+
+## Example: Animated
+
+Click the button to show an Alert with enter/exit animation.
+
+<Canvas of={AlertStories.AnimatedExample} sourceState="shown" />
+
+---
+
+## Props
+
+<ArgTypes of={AlertStories} />
+
+---
+
+## Usage Guidelines
+
+- **Do**: Use Alerts for inline, full-width messages (e.g. at top of a form or section)
+- **Do**: Match state to semantic meaning (success=green, error=red, etc.)
+- **Do**: Provide `onClose` when the user can dismiss the message
+- **Don't**: Use Alerts for temporary toasts—use Toast instead
+- **Don't**: Stack multiple Alerts without clear hierarchy
