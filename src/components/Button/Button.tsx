@@ -23,6 +23,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   iconElement?: React.ReactNode;
   /** Button label text (not used when icon="alone") */
   children?: React.ReactNode;
+  /** Stretch to 100% of the parent container width */
+  fullWidth?: boolean;
 }
 
 const variantStyles: Record<ButtonType, { base: string; hover: string; focused: string; disabled: string }> = {
@@ -125,6 +127,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon = 'none',
       iconElement,
       children,
+      fullWidth = false,
       className = '',
       disabled,
       ...props
@@ -133,6 +136,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const v = variantStyles[variant];
     const isIconAlone = icon === 'alone';
+    const layoutClass = fullWidth ? 'flex w-full' : 'inline-flex';
     const iconSize = isIconAlone ? iconAloneSizeMap[size] : iconSizeMap[size];
     const renderedIcon = iconElement ?? <DefaultIcon size={iconSize} />;
 
@@ -140,7 +144,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const radiusClass = 'rounded-full';
 
     const classes = [
-      'inline-flex items-center justify-center',
+      layoutClass,
+      'items-center justify-center',
       radiusClass,
       'font-body font-semibold',
       'cursor-pointer',
@@ -168,7 +173,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button ref={ref} className={classes} disabled={disabled} {...props}>
-        <span className="inline-flex items-center justify-center px-[4px] gap-[8px]">
+        <span
+          className={[
+            'inline-flex items-center justify-center px-[4px] gap-[8px]',
+            fullWidth ? 'w-full' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
           {icon === 'left' && renderedIcon}
           {children}
           {icon === 'right' && renderedIcon}

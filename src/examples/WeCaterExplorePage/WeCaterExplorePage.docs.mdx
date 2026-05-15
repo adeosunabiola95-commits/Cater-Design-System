@@ -1,0 +1,47 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as WeCaterExplorePageStories from './WeCaterExplorePage.stories';
+
+<Meta of={WeCaterExplorePageStories} />
+
+# WeCater Explore page
+
+Consumer marketplace **Explore** experience mapped to Figma frame [**WeCater Explore page (4664:14354)**](https://www.figma.com/design/tK5SjqGRgeVr5w5tmxuLDa/Cater-Design-System?node-id=4664-14354) on page **Marketplace (Sally)**.
+
+---
+
+## Overview
+
+Full-page example: top bar with location and search and left navigation (desktop). Below **1024px**, the sidebar hides. Icons use Figma-mapped SVG paths (`ExploreFigmaIcons.tsx`).
+
+---
+
+## Explore page
+
+<Canvas of={WeCaterExplorePageStories.ExplorePage} sourceState="shown" />
+
+---
+
+## Regions
+
+### Top bar
+
+<Canvas of={WeCaterExplorePageStories.TopBarOnly} sourceState="shown" />
+
+### Sidebar
+
+<Canvas of={WeCaterExplorePageStories.SidebarOnly} sourceState="shown" />
+
+### CaterAI panel
+
+<Canvas of={WeCaterExplorePageStories.CaterAIPanelOnly} sourceState="shown" />
+
+---
+
+## Figma mapping
+
+| Region | Node | Notes |
+|--------|------|--------|
+| Frame | `4664:14354` | 1512×826 |
+| Top Bar | `4664:14355` | 60px height |
+| Sidebar | `4664:14356` | 206px, `#FAFBFC`, active Explore `#CCF8B9` |
+| Catering Assistant | `4664:16127` | 656px panel, welcome + 4 prompts |

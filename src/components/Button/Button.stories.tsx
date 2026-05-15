@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          'Buttons trigger actions — Cater Design Systems / Figma (component set 20:3394). Six types, three sizes, four icon positions. Radius/full (pill) on root. Primary: Sherwood Green #073D30 + Gossip #CCF8B9 label.',
+          'Buttons trigger actions — Cater Design Systems / Figma (component set 20:3394). Six types, three sizes, four icon positions, optional fullWidth. Radius/full (pill) on root. Primary: Sherwood Green #073D30 + Gossip #CCF8B9 label.',
       },
       source: { type: 'dynamic' },
     },
@@ -42,6 +42,11 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: 'boolean',
       description: 'Whether the button is disabled. Maps to Figma "State=disabled".',
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Stretch the button to fill the width of its parent container.',
+      table: { defaultValue: { summary: 'false' } },
     },
     children: {
       control: 'text',
@@ -110,6 +115,58 @@ export const IconRight: Story = {
 export const IconAlone: Story = {
   name: 'Icon Alone',
   args: { variant: 'primary', icon: 'alone' },
+};
+
+// ===== LAYOUT =====
+
+export const FullWidth: Story = {
+  name: 'Full Width',
+  args: { variant: 'primary', fullWidth: true, children: 'Label' },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 320 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const FullWidthWithIcon: Story = {
+  name: 'Full Width – Icon Right',
+  args: { variant: 'primary', fullWidth: true, icon: 'right', children: 'Continue' },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 320 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const FullWidthTypes: Story = {
+  name: 'Full Width – All Types',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 320 }}>
+      <Button variant="primary" fullWidth>
+        Primary
+      </Button>
+      <Button variant="destructive" fullWidth>
+        Destructive
+      </Button>
+      <Button variant="outline" fullWidth>
+        Outline
+      </Button>
+      <Button variant="ghost" fullWidth>
+        Ghost
+      </Button>
+      <Button variant="secondary-color" fullWidth>
+        Secondary
+      </Button>
+      <Button variant="tertiary-grey" fullWidth>
+        Tertiary
+      </Button>
+    </div>
+  ),
 };
 
 // ===== STATE VARIANTS =====

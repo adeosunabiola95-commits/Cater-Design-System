@@ -16,6 +16,7 @@ Use `figma_check_design_parity` (Figma Console MCP) to compare coded components 
 | Modal (Add Business) | 478:2019 | Composed example — see **Examples → Modal** |
 | Modal (Add Link) | 483:2104 | Composed example |
 | Modal (Select Campaign) | 513:2383 | Composed example |
+| WeCater Explore page | 4664:14354 | Marketplace (Sally); consumer Explore + CaterAI panel |
 | Drawer (Add Header Text) | 486:2140 | Width sm=381, md=420 |
 | CheckboxGroupItem | 497:2376 | Chekbox group items |
 | Badge | 438:2780 | Badge info |
