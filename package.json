@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "storybook dev -p 6006 --initial-path /docs/introduction--docs",
     "storybook": "storybook dev -p 6006 --initial-path /docs/introduction--docs",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-storybook:pages": "STORYBOOK_BASE_PATH=/Cater-Design-System/ storybook build"
   },
   "keywords": [],
   "author": "",
