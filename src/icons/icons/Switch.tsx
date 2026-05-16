@@ -1,8 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiToggleLine) */
+import { RiToggleLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const Switch = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M17 6H7C5.4087 6 3.88258 6.63214 2.75736 7.75736C1.63214 8.88258 1 10.4087 1 12C1 13.5913 1.63214 15.1174 2.75736 16.2426C3.88258 17.3679 5.4087 18 7 18H17C18.5913 18 20.1174 17.3679 21.2426 16.2426C22.3679 15.1174 23 13.5913 23 12C23 10.4087 22.3679 8.88258 21.2426 7.75736C20.1174 6.63214 18.5913 6 17 6ZM17 16H7C5.93913 16 4.92172 15.5786 4.17157 14.8284C3.42143 14.0783 3 13.0609 3 12C3 10.9391 3.42143 9.92172 4.17157 9.17157C4.92172 8.42143 5.93913 8 7 8H17C18.0609 8 19.0783 8.42143 19.8284 9.17157C20.5786 9.92172 21 10.9391 21 12C21 13.0609 20.5786 14.0783 19.8284 14.8284C19.0783 15.5786 18.0609 16 17 16Z" fill="currentColor"/>
-<path d="M7 14C8.10457 14 9 13.1046 9 12C9 10.8954 8.10457 10 7 10C5.89543 10 5 10.8954 5 12C5 13.1046 5.89543 14 7 14Z" fill="currentColor"/>
-  </svg>
-);
+export const Switch = createRemixIcon(RiToggleLine, 'Switch');

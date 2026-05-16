@@ -5,7 +5,9 @@ import { Toggle } from './Toggle';
 const meta: Meta<typeof Toggle> = {
   title: 'Components/Toggle',
   component: Toggle,
-  tags: [],
+  args: {
+    'aria-label': 'Toggle',
+  },
   parameters: {
     docs: {
       description: {
@@ -68,7 +70,7 @@ const ControlledToggle = () => {
   const [checked, setChecked] = useState(false);
   return (
     <div className="flex items-center gap-3">
-      <Toggle checked={checked} onChange={setChecked} />
+      <Toggle checked={checked} onChange={setChecked} aria-label="Example toggle" />
       <span className="font-body text-text-subtitle text-sm">
         {checked ? 'On' : 'Off'}
       </span>
@@ -87,20 +89,20 @@ export const AllVariants: Story = {
         <p className="font-body font-semibold text-text-title mb-3">Medium</p>
         <div className="flex items-center gap-6">
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="md" />
-            <span className="text-xs text-text-caption">Default Off</span>
+            <Toggle size="md" aria-label="Medium toggle off" />
+            <span className="text-xs text-text-subtitle">Default Off</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="md" defaultChecked />
-            <span className="text-xs text-text-caption">Default On</span>
+            <Toggle size="md" defaultChecked aria-label="Medium toggle on" />
+            <span className="text-xs text-text-subtitle">Default On</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="md" disabled />
-            <span className="text-xs text-text-caption">Disabled Off</span>
+            <Toggle size="md" disabled aria-label="Medium toggle disabled off" />
+            <span className="text-xs text-text-subtitle">Disabled Off</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="md" disabled defaultChecked />
-            <span className="text-xs text-text-caption">Disabled On</span>
+            <Toggle size="md" disabled defaultChecked aria-label="Medium toggle disabled on" />
+            <span className="text-xs text-text-subtitle">Disabled On</span>
           </div>
         </div>
       </div>
@@ -109,20 +111,20 @@ export const AllVariants: Story = {
         <p className="font-body font-semibold text-text-title mb-3">Small</p>
         <div className="flex items-center gap-6">
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="sm" />
-            <span className="text-xs text-text-caption">Default Off</span>
+            <Toggle size="sm" aria-label="Small toggle off" />
+            <span className="text-xs text-text-subtitle">Default Off</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="sm" defaultChecked />
-            <span className="text-xs text-text-caption">Default On</span>
+            <Toggle size="sm" defaultChecked aria-label="Small toggle on" />
+            <span className="text-xs text-text-subtitle">Default On</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="sm" disabled />
-            <span className="text-xs text-text-caption">Disabled Off</span>
+            <Toggle size="sm" disabled aria-label="Small toggle disabled off" />
+            <span className="text-xs text-text-subtitle">Disabled Off</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Toggle size="sm" disabled defaultChecked />
-            <span className="text-xs text-text-caption">Disabled On</span>
+            <Toggle size="sm" disabled defaultChecked aria-label="Small toggle disabled on" />
+            <span className="text-xs text-text-subtitle">Disabled On</span>
           </div>
         </div>
       </div>

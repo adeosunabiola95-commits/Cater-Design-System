@@ -1,3 +1,4 @@
+/** @generated — do not edit by hand; run `node scripts/generate-remix-icons.mjs` */
 export { Activity } from './icons/Activity';
 export { Add } from './icons/Add';
 export { Add2 } from './icons/Add2';
@@ -12,8 +13,8 @@ export { Adjustment4 } from './icons/Adjustment4';
 export { Adjustment5 } from './icons/Adjustment5';
 export { Adjustment6 } from './icons/Adjustment6';
 export { Ai } from './icons/Ai';
-export { Alert02 } from './icons/Alert02';
 export { Airplay } from './icons/Airplay';
+export { Alert02 } from './icons/Alert02';
 export { Anchor } from './icons/Anchor';
 export { Apple } from './icons/Apple';
 export { Archive } from './icons/Archive';
@@ -85,8 +86,7 @@ export { DownArrow } from './icons/DownArrow';
 export { DownChevron } from './icons/DownChevron';
 export { Download } from './icons/Download';
 export { Download2 } from './icons/Download2';
-/** Renamed from `Drawer` to avoid clashing with `Drawer` (slide-in panel) on the package root. */
-export { Drawer as DrawerIcon } from './icons/Drawer';
+export { Drawer } from './icons/Drawer';
 export { Edit } from './icons/Edit';
 export { Edit2 } from './icons/Edit2';
 export { Edit3 } from './icons/Edit3';
@@ -315,7 +315,8 @@ export { Yogurt } from './icons/Yogurt';
 export { ZoomIn } from './icons/ZoomIn';
 export { ZoomOut } from './icons/ZoomOut';
 export { ZoomOut2 } from './icons/ZoomOut2';
-
+/** Renamed from `Drawer` to avoid clashing with `Drawer` (slide-in panel) on the package root. */
+export { Drawer as DrawerIcon } from './icons/Drawer';
 export { Icon } from './Icon';
-export type { IconName } from './Icon';
+export type { IconName } from './iconNames';
 export { iconCategories, type IconCategory } from './categories';

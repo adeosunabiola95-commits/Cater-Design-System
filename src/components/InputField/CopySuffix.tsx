@@ -1,9 +1,13 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Copy } from '../../icons/icons/Copy';
 import { Tick02 } from '../../icons/icons/Tick02';
+import type { InputFieldState } from './inputFieldState';
+import { inputFieldValueClassName } from './inputFieldState';
 
 export interface CopySuffixProps {
+  /** Matches parent InputField Figma state for label/icon color. */
+  state?: InputFieldState;
   textToCopy?: string;
   iconStiffness?: number;
   iconDamping?: number;
@@ -19,6 +23,7 @@ export interface CopySuffixProps {
 }
 
 export function CopySuffix({
+  state = 'filled',
   textToCopy = 'www.cateringrewards.io',
   iconStiffness = 500,
   iconDamping = 25,
@@ -33,6 +38,8 @@ export function CopySuffix({
   resetDelay = 2000,
 }: CopySuffixProps) {
   const [copied, setCopied] = React.useState(false);
+  const reduceMotion = useReducedMotion();
+  const labelClass = inputFieldValueClassName(state);
 
   const handleCopy = () => {
     navigator.clipboard?.writeText(textToCopy);
@@ -56,6 +63,7 @@ export function CopySuffix({
   return (
     <button
       type="button"
+      aria-label={copied ? 'Copied' : 'Copy to clipboard'}
       onClick={handleCopy}
       className="flex items-center gap-[8px] cursor-pointer overflow-hidden"
     >
@@ -64,7 +72,7 @@ export function CopySuffix({
           {copied ? (
             <motion.span
               key="tick"
-              initial={{ opacity: 0, scale: iconExitScale, rotate: -iconRotation }}
+              initial={reduceMotion ? false : { opacity: 0, scale: iconExitScale, rotate: -iconRotation }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: iconExitScale, rotate: iconRotation }}
               transition={iconTransition}
@@ -75,13 +83,13 @@ export function CopySuffix({
           ) : (
             <motion.span
               key="copy"
-              initial={{ opacity: 0, scale: iconExitScale }}
+              initial={reduceMotion ? false : { opacity: 0, scale: iconExitScale }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: iconExitScale }}
               transition={iconTransition}
               style={{ display: 'inline-flex', position: 'absolute', inset: 0 }}
             >
-              <Copy width={20} height={20} className="text-text-body" />
+              <Copy width={20} height={20} className={labelClass} />
             </motion.span>
           )}
         </AnimatePresence>
@@ -92,9 +100,9 @@ export function CopySuffix({
           {copied ? (
             <motion.span
               key="copied-text"
-              initial={{ opacity: 0, y: textSlideDistance, filter: `blur(${textBlur}px)` }}
+              initial={reduceMotion ? false : { opacity: 0, y: textSlideDistance, filter: `blur(${textBlur}px)` }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -textSlideDistance, filter: `blur(${textBlur}px)` }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -textSlideDistance, filter: `blur(${textBlur}px)` }}
               transition={textTransition}
               className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-salem-600"
             >
@@ -103,11 +111,11 @@ export function CopySuffix({
           ) : (
             <motion.span
               key="copy-text"
-              initial={{ opacity: 0, y: textSlideDistance, filter: `blur(${textBlur}px)` }}
+              initial={reduceMotion ? false : { opacity: 0, y: textSlideDistance, filter: `blur(${textBlur}px)` }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -textSlideDistance, filter: `blur(${textBlur}px)` }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -textSlideDistance, filter: `blur(${textBlur}px)` }}
               transition={textTransition}
-              className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-body"
+              className={`font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] ${labelClass}`}
             >
               Copy
             </motion.span>

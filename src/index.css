@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Figma Family/Display — General Sans (Fontshare; Semibold 600 for modal headers) */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
 @theme {
   /* ===== FONTS (Figma: Typography — Family/Display, Family/Body) ===== */
   --font-title: 'General Sans', sans-serif;

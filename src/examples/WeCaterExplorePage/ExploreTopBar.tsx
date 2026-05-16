@@ -6,7 +6,7 @@ import {
   LocationPinIcon,
   SearchHeaderIcon,
 } from './ExploreFigmaIcons';
-import logoUrl from './assets/wecater-logo.svg';
+import { Logo } from '@/components/Logo';
 
 function GhostIconButton({
   children,
@@ -43,13 +43,8 @@ export function ExploreTopBar({
   return (
     <header className="flex h-[60px] w-full shrink-0 items-center gap-2 border-b border-mirage-100 bg-white px-3 sm:gap-4 sm:px-4 lg:gap-8 lg:px-6">
       <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4 lg:gap-8">
-        <img
-          src={logoUrl}
-          alt="wecater"
-          className="h-8 w-[140px] shrink-0 select-none sm:h-9 sm:w-[172px]"
-          width={172}
-          height={36}
-        />
+        <Logo size="sm" className="sm:hidden" />
+        <Logo size="lg" className="hidden sm:block" />
         <div className="flex min-w-0 flex-1 items-center gap-1.5 max-w-[620px]">
           <div
             className="flex h-9 w-full min-w-0 max-w-full items-center gap-2 rounded-full border border-mirage-200 bg-white px-3 shadow-xs sm:w-[225px] sm:max-w-[225px]"

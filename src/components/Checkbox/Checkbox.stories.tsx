@@ -6,7 +6,6 @@ import { CheckboxGroupItem } from './CheckboxGroupItem';
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  tags: [],
   parameters: {
     docs: {
       description: {

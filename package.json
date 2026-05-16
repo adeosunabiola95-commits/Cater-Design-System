@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "postinstall": "playwright install chromium --with-deps || true",
     "dev": "storybook dev -p 6006 --initial-path /docs/introduction--docs",
     "storybook": "storybook dev -p 6006 --initial-path /docs/introduction--docs",
     "build-storybook": "storybook build",
-    "build-storybook:pages": "STORYBOOK_BASE_PATH=/Cater-Design-System/ storybook build"
+    "build-storybook:pages": "STORYBOOK_BASE_PATH=/Cater-Design-System/ storybook build",
+    "icons:generate": "node scripts/generate-remix-icons.mjs"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +19,7 @@
   "description": "Cater Design Systems — component library and Storybook",
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.15",
+    "@remixicon/react": "^4.9.0",
     "motion": "^12.34.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
@@ -23,7 +28,6 @@
     "@chromatic-com/storybook": "^5.0.1",
     "@storybook/addon-a11y": "^10.2.13",
     "@storybook/addon-docs": "^10.2.13",
-    "@storybook/addon-onboarding": "^10.2.13",
     "@storybook/addon-vitest": "^10.2.13",
     "@storybook/react-vite": "^10.2.13",
     "@tailwindcss/vite": "^4.2.1",

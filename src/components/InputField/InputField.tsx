@@ -1,18 +1,42 @@
 import React, { forwardRef, useId, useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
+import {
+  getInputFieldKindAttributes,
+  INPUT_FIELD_KIND_PLACEHOLDER,
+  sanitizeInputFieldValue,
+  type InputFieldKind,
+} from './inputFieldKind';
+import {
+  inputFieldValueClassName,
+  resolveInputFieldState,
+  type InputFieldState,
+} from './inputFieldState';
+
 export type InputFieldSize = 'sm' | 'md';
 
 const focusSpring = { type: 'spring' as const, visualDuration: 0.25, bounce: 0.2 };
 const clearIconTransition = { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] as const };
 export type InputFieldAction = 'default' | 'error';
 export type InputFieldSuffixVariant = 'disabled' | 'subtle';
+export type { InputFieldKind } from './inputFieldKind';
+export type { InputFieldState } from './inputFieldState';
 
 export interface InputFieldProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   hint?: string;
   size?: InputFieldSize;
+  /**
+   * Practical input context — sets `type`, mobile keyboard (`inputMode`), `autoComplete`,
+   * and filters characters (e.g. `phone` allows digits and + only, `email` strips spaces).
+   */
+  inputKind?: InputFieldKind;
+  /**
+   * Figma **State**: `default` (empty / `#68707C`), `ghost` (`#B2B8C1`), `filled` (typed / `#29344A`).
+   * When omitted, becomes `filled` when the input has a value.
+   */
+  state?: InputFieldState;
   action?: InputFieldAction;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
@@ -37,6 +61,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       label,
       hint,
       size = 'md',
+      inputKind,
+      state,
       action = 'default',
       leadingIcon,
       trailingIcon,
@@ -52,6 +78,10 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       onChange,
       onFocus,
       onBlur,
+      placeholder: placeholderProp,
+      type: typeProp,
+      inputMode: inputModeProp,
+      autoComplete: autoCompleteProp,
       ...props
     },
     ref
@@ -61,12 +91,23 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     const hintId = hint ? `${inputId}-hint` : undefined;
     const isError = action === 'error';
 
+    const kindInputProps = getInputFieldKindAttributes(inputKind, {
+      type: typeProp,
+      inputMode: inputModeProp,
+      autoComplete: autoCompleteProp,
+      placeholder:
+        placeholderProp ??
+        (inputKind ? INPUT_FIELD_KIND_PLACEHOLDER[inputKind] : undefined),
+    });
+
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = useState<string>(
       (defaultValue as string) ?? ''
     );
     const currentValue = isControlled ? String(controlledValue) : internalValue;
     const hasValue = currentValue.length > 0;
+    const resolvedState = resolveInputFieldState(state, hasValue);
+    const valueTextClass = inputFieldValueClassName(resolvedState);
 
     useEffect(() => {
       if (isControlled) {
@@ -76,12 +117,16 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
+        const sanitized = sanitizeInputFieldValue(inputKind, e.target.value);
+        if (sanitized !== e.target.value) {
+          e.target.value = sanitized;
+        }
         if (!isControlled) {
-          setInternalValue(e.target.value);
+          setInternalValue(sanitized);
         }
         onChange?.(e);
       },
-      [isControlled, onChange]
+      [inputKind, isControlled, onChange]
     );
 
     const handleClear = useCallback(() => {
@@ -160,6 +205,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
                 disabled={disabled}
                 aria-describedby={hintId}
                 aria-invalid={isError || undefined}
+                {...kindInputProps}
                 {...(isControlled ? { value: controlledValue } : { defaultValue })}
                 onChange={handleChange}
                 onFocus={handleFocus}
@@ -167,13 +213,19 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
                 className={[
                   'flex-1 min-w-0 bg-transparent outline-none font-body font-medium',
                   'text-[16px] leading-[150%] tracking-[0.16px]',
-                  'text-text-subtitle placeholder:text-text-caption',
+                  valueTextClass,
+                  'placeholder:text-text-caption',
                   'disabled:cursor-not-allowed',
                 ].join(' ')}
                 {...props}
               />
               {trailingIcon && (
-                <span className="shrink-0 flex items-center justify-center text-text-body w-[20px] h-[20px]">
+                <span
+                  className={[
+                    'shrink-0 flex items-center justify-center w-[20px] h-[20px]',
+                    resolvedState === 'filled' ? 'text-text-body' : 'text-text-subtitle',
+                  ].join(' ')}
+                >
                   {trailingIcon}
                 </span>
               )}
@@ -236,6 +288,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
               disabled={disabled}
               aria-describedby={hintId}
               aria-invalid={isError || undefined}
+              {...kindInputProps}
               {...(isControlled ? { value: controlledValue } : { defaultValue })}
               onChange={handleChange}
               onFocus={handleFocus}
@@ -243,13 +296,19 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
               className={[
                 'flex-1 min-w-0 bg-transparent outline-none font-body font-medium',
                 'text-[16px] leading-[150%] tracking-[0.16px]',
-                'text-text-subtitle placeholder:text-text-caption',
+                valueTextClass,
+                'placeholder:text-text-caption',
                 'disabled:cursor-not-allowed',
               ].join(' ')}
               {...props}
             />
             {trailingIcon && (
-              <span className="shrink-0 flex items-center justify-center text-text-body w-[20px] h-[20px]">
+              <span
+                className={[
+                  'shrink-0 flex items-center justify-center w-[20px] h-[20px]',
+                  resolvedState === 'filled' ? 'text-text-body' : 'text-text-subtitle',
+                ].join(' ')}
+              >
                 {trailingIcon}
               </span>
             )}

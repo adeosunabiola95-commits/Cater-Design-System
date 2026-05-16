@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiChat1Line) */
+import { RiChat1Line } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const Chat = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M3 3C2.73478 3 2.48043 3.10536 2.29289 3.29289C2.10536 3.48043 2 3.73478 2 4V16C2 16.2652 2.10536 16.5196 2.29289 16.7071C2.48043 16.8946 2.73478 17 3 17H12.649L17.375 20.781C17.5221 20.8988 17.6995 20.9726 17.8867 20.9939C18.0739 21.0153 18.2633 20.9833 18.4332 20.9017C18.603 20.8201 18.7463 20.6921 18.8466 20.5326C18.9469 20.373 19.0001 20.1884 19 20V17H21C21.2652 17 21.5196 16.8946 21.7071 16.7071C21.8946 16.5196 22 16.2652 22 16V4C22 3.73478 21.8946 3.48043 21.7071 3.29289C21.5196 3.10536 21.2652 3 21 3H3ZM20 15H18C17.7348 15 17.4804 15.1054 17.2929 15.2929C17.1054 15.4804 17 15.7348 17 16V17.919L13.625 15.219C13.4476 15.0771 13.2272 14.9999 13 15H4V5H20V15Z" fill="currentColor"/>
-  </svg>
-);
+export const Chat = createRemixIcon(RiChat1Line, 'Chat');

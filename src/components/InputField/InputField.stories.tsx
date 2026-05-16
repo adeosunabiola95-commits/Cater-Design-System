@@ -15,7 +15,7 @@ const meta: Meta<typeof InputField> = {
     docs: {
       description: {
         component:
-          'Input fields allow users to enter text. Available in 2 sizes (sm, md), 5 types (name, company, amount, date, copy), and 2 action states (default, error). Extracted pixel-for-pixel from the Cater Design Systems Figma.',
+          'Input fields — Figma `99:960`. Use **`inputKind`** for practical, accessible contexts (`email`, `phone`, `url`, `amount`, etc.) — correct keyboard, autocomplete, and character filtering. States: default, ghost, filled.',
       },
       source: { type: 'dynamic' },
     },
@@ -27,6 +27,16 @@ const meta: Meta<typeof InputField> = {
       control: 'select',
       options: ['sm', 'md'],
       table: { defaultValue: { summary: 'md' } },
+    },
+    inputKind: {
+      control: 'select',
+      options: ['text', 'name', 'email', 'phone', 'url', 'search', 'amount', 'number'],
+      description: 'Semantic context — type, keyboard, autocomplete, and input filtering.',
+    },
+    state: {
+      control: 'select',
+      options: ['default', 'ghost', 'filled'],
+      description: 'Figma State. Omit to use filled when a value is present.',
     },
     action: {
       control: 'select',
@@ -52,14 +62,44 @@ export const Default: Story = {
   },
 };
 
-export const WithValue: Story = {
-  name: 'With Value',
+/** Figma State=Filled — typed value uses `text-text-body` (`#29344A`). */
+export const Filled: Story = {
+  name: 'State · Filled',
+  args: {
+    label: 'Business name *',
+    hint: 'This is a hint text to help user.',
+    defaultValue: 'Acme Shop',
+    state: 'filled',
+    trailingIcon: <ArrowDown02 width={20} height={20} />,
+  },
+};
+
+/** Auto-filled when `defaultValue` / `value` is set (no explicit state). */
+export const FilledAuto: Story = {
+  name: 'State · Filled (auto)',
   args: {
     label: 'Business name *',
     hint: 'This is a hint text to help user.',
     defaultValue: 'Acme Shop',
     trailingIcon: <ArrowDown02 width={20} height={20} />,
   },
+};
+
+/** Figma State=ghost — copy type; lighter `#B2B8C1` text. */
+export const Ghost: Story = {
+  name: 'State · Ghost',
+  render: () => (
+    <div style={{ width: 331 }}>
+      <InputField
+        label="Website *"
+        hint="Copy type — text-caption (#B2B8C1)"
+        defaultValue="www.cateringrewards.io"
+        state="ghost"
+        suffixVariant="subtle"
+        suffix={<CopySuffix state="ghost" />}
+      />
+    </div>
+  ),
 };
 
 export const Error: Story = {
@@ -101,8 +141,28 @@ export const NameType: Story = {
   args: {
     label: 'Business name *',
     hint: 'This is a hint text to help user.',
+    inputKind: 'name',
     defaultValue: 'Acme Shop',
     trailingIcon: <ArrowDown02 width={20} height={20} />,
+  },
+};
+
+export const EmailType: Story = {
+  name: 'Type: Email',
+  args: {
+    label: 'Contact email *',
+    hint: 'We will send order updates to this address.',
+    inputKind: 'email',
+    placeholder: 'hello@example.com',
+  },
+};
+
+export const PhoneType: Story = {
+  name: 'Type: Phone',
+  args: {
+    label: 'Phone number *',
+    hint: 'Digits and + only — mobile shows telephone keypad.',
+    inputKind: 'phone',
   },
 };
 
@@ -115,6 +175,7 @@ export const CompanyType: Story = {
         <InputField
           label="Customer name *"
           hint="This is a hint text to help user."
+          inputKind="search"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           leadingIcon={<Search width={20} height={20} />}
@@ -133,10 +194,11 @@ export const AmountType: Story = {
       <InputField
         label="Amount *"
         hint="This is a hint text to help user."
+        inputKind="amount"
         defaultValue="$5.00"
         suffix={
           <div className="flex items-center gap-[4px]">
-            <span className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-subtitle">
+            <span className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-body">
               USD
             </span>
             <ArrowDown02 width={20} height={20} className="text-text-subtitle" />
@@ -167,10 +229,24 @@ export const CopyType: Story = {
       <InputField
         label="Website *"
         hint="This is a hint text to help user."
+        inputKind="url"
         defaultValue="www.cateringrewards.io"
+        state="ghost"
         suffixVariant="subtle"
-        suffix={<CopySuffix />}
+        suffix={<CopySuffix state="ghost" />}
       />
+    </div>
+  ),
+};
+
+export const PracticalKinds: Story = {
+  name: 'Practical input kinds',
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: 331 }}>
+      <InputField label="Email *" hint="Email keyboard and validation." inputKind="email" />
+      <InputField label="Phone number *" hint="Telephone keypad; digits and + only." inputKind="phone" />
+      <InputField label="Website *" hint="URL keyboard on mobile." inputKind="url" />
+      <InputField label="Amount *" hint="Decimal keypad; currency characters only." inputKind="amount" />
     </div>
   ),
 };
@@ -209,9 +285,11 @@ export const CopyAnimationPlayground: Story = {
         label="Website *"
         hint="Adjust the controls in the panel below, then click Copy to preview."
         defaultValue="www.cateringrewards.io"
+        state="ghost"
         suffixVariant="subtle"
         suffix={
           <CopySuffix
+            state="ghost"
             iconStiffness={args.iconStiffness as number}
             iconDamping={args.iconDamping as number}
             iconBounce={args.iconBounce as number}
@@ -238,6 +316,7 @@ function CompanyInput({ hint = 'This is a hint text to help user.' }: { hint?: s
     <InputField
       label="Customer name *"
       hint={hint}
+      inputKind="search"
       value={value}
       onChange={(e) => setValue(e.target.value)}
       leadingIcon={<Search width={20} height={20} />}
@@ -275,14 +354,49 @@ export const AllSizes: Story = {
   ),
 };
 
+export const AllStates: Story = {
+  name: 'All States',
+  render: () => (
+    <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div style={{ width: 331 }}>
+        <InputField
+          label="Default"
+          hint="Empty — text-subtitle (#68707C)"
+          placeholder="Acme Shop"
+          trailingIcon={<ArrowDown02 width={20} height={20} />}
+        />
+      </div>
+      <div style={{ width: 331 }}>
+        <InputField
+          label="Filled"
+          hint="Typed — text-body (#29344A)"
+          defaultValue="Acme Shop"
+          state="filled"
+          trailingIcon={<ArrowDown02 width={20} height={20} />}
+        />
+      </div>
+      <div style={{ width: 331 }}>
+        <InputField
+          label="Ghost"
+          hint="Copy — text-caption (#B2B8C1)"
+          defaultValue="www.cateringrewards.io"
+          state="ghost"
+          suffixVariant="subtle"
+          suffix={<CopySuffix state="ghost" />}
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const AllActions: Story = {
   name: 'All Actions',
   render: () => (
     <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
       <div style={{ width: 331 }}>
         <InputField
-          label="Default"
-          hint="This is a hint text to help user."
+          label="Default action"
+          hint="Filled value with default border"
           defaultValue="Acme Shop"
           trailingIcon={<ArrowDown02 width={20} height={20} />}
         />
@@ -307,6 +421,7 @@ export const AllTypes: Story = {
       <InputField
         label="Business name *"
         hint="Type: Name"
+        inputKind="name"
         defaultValue="Acme Shop"
         trailingIcon={<ArrowDown02 width={20} height={20} />}
       />
@@ -314,10 +429,11 @@ export const AllTypes: Story = {
       <InputField
         label="Amount *"
         hint="Type: Amount"
+        inputKind="amount"
         defaultValue="$5.00"
         suffix={
           <div className="flex items-center gap-[4px]">
-            <span className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-subtitle">
+            <span className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-body">
               USD
             </span>
             <ArrowDown02 width={20} height={20} className="text-text-subtitle" />
@@ -332,9 +448,11 @@ export const AllTypes: Story = {
       <InputField
         label="Website *"
         hint="Type: Copy"
+        inputKind="url"
         defaultValue="www.cateringrewards.io"
+        state="ghost"
         suffixVariant="subtle"
-        suffix={<CopySuffix />}
+        suffix={<CopySuffix state="ghost" />}
       />
     </div>
   ),

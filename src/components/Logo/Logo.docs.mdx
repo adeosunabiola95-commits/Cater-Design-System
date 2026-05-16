@@ -1,0 +1,104 @@
+{/* Logo.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as LogoStories from './Logo.stories';
+
+<Meta of={LogoStories} />
+
+# Logo
+
+The **wecater** wordmark in **Sherwood Green** (`#073D30`). Use the size tokens below so the logo stays crisp and aligned with navigation chrome across mobile, tablet, and desktop.
+
+**Figma** — Cater Design System (`tK5SjqGRgeVr5w5tmxuLDa`)
+
+- Logo group: `4344:3496` (~**172×36** px)
+- Top Bar reference: `4664:14355` (WeCater Explore)
+
+<iframe
+  style={{ border: '1px solid var(--color-border-default, #E4E7EC)', borderRadius: 8, width: '100%', height: 480 }}
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FtK5SjqGRgeVr5w5tmxuLDa%2FCater-Design-System%3Fnode-id%3D4664-14355"
+  allowFullScreen
+  title="Figma — WeCater Top Bar with Logo"
+/>
+
+---
+
+## Size scale
+
+Five heights are used in product UI. Dimensions are taken from **Logo** instances in the Figma file (not invented).
+
+| Token | Frame (px) | Typical use |
+| ----- | ---------- | ----------- |
+| `xs` | 97×20 | Compact chrome — footers, nested panels |
+| `sm` | 140×32 | **Mobile** navigation / top bar |
+| `md` | 160×33 | **Tablet** navigation |
+| `lg` | 172×36 | **Desktop** navigation (canonical) |
+| `xl` | 215×45 | Marketing / hero (sparingly) |
+
+<Canvas of={LogoStories.SizeScale} sourceState="shown" />
+
+---
+
+## Breakpoints
+
+Match Storybook viewports (**Mobile** 375px, **Tablet** 768px, **Desktop** 1280px).
+
+<Canvas of={LogoStories.BreakpointGuidance} sourceState="shown" />
+
+| Viewport | Recommended `size` | Notes |
+| -------- | ------------------ | ----- |
+| Mobile (≤767px) | `sm` | Default for app headers |
+| Tablet (768–1023px) | `md` | Or `lg` when layout matches desktop nav |
+| Desktop (≥1024px) | `lg` | Top Bar / global chrome |
+
+---
+
+## Navigation examples
+
+### Mobile
+
+<Canvas of={LogoStories.MobileNavigation} sourceState="shown" />
+
+### Desktop
+
+<Canvas of={LogoStories.DesktopNavigation} sourceState="shown" />
+
+### Responsive (WeCater Explore)
+
+`sm` below the `sm:` breakpoint, `lg` from 640px up — same pattern as `ExploreTopBar`.
+
+<Canvas of={LogoStories.ResponsiveNavigation} sourceState="shown" />
+
+---
+
+## Default
+
+<Canvas of={LogoStories.Default} sourceState="shown" />
+
+---
+
+## Usage
+
+```tsx
+import { Logo } from '@/components/Logo';
+
+// Desktop nav
+<Logo size="lg" />
+
+// Mobile nav
+<Logo size="sm" />
+
+// Responsive (two instances — hide/show with Tailwind)
+<Logo size="sm" className="sm:hidden" />
+<Logo size="lg" className="hidden sm:block" />
+```
+
+- Always provide context with `alt` (default: `wecater`).
+- Do not stretch the wordmark; pick a **size token** instead of arbitrary width/height.
+- Keep clear space around the logo equal to at least **half the wordmark height** on all sides.
+- **Icon-only** (~64×64) marks appear in Figma for avatars/app icons; use a dedicated asset when that variant is added to code.
+
+---
+
+## Props
+
+<ArgTypes of={LogoStories} />

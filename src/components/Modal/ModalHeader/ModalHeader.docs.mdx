@@ -1,0 +1,68 @@
+{/* ModalHeader.docs.mdx */}
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ModalHeaderStories from './ModalHeader.stories';
+
+<Meta of={ModalHeaderStories} />
+
+# Modal Header
+
+First molecule in the modal stack: **header** → body → actions. Maps to Figma *Marketplace (Sally)*.
+
+## Figma variants
+
+| Variant | Node | Structure |
+| ------- | ---- | --------- |
+| **Header container** | `4684:19909` | Title + close |
+| **Header container with subtext** | `4684:19918` | Title + 12px gap + subtext + close |
+
+**Layout:** 24px padding (top/left/right/bottom), 32px gap between text column and close, title **General Sans Semibold 25px**, subtext **Inter 14px**.
+
+## Molecules & atoms
+
+| Piece | Export | Role |
+| ----- | ------ | ---- |
+| Shell | `ModalHeader` | Full header row + border |
+| Text column | `ModalHeaderTextGroup` | Title + optional subtext (12px gap) |
+| Title | `ModalHeaderTitle` | General Sans 25px |
+| Subtext | `ModalHeaderSubtext` | Inter 14px |
+| Close | `ModalHeaderCloseButton` | 35×35 circle, Cancel 18px |
+
+---
+
+## Header container (title only)
+
+<Canvas of={ModalHeaderStories.TitleOnly} sourceState="shown" />
+
+---
+
+## Header container with subtext
+
+<Canvas of={ModalHeaderStories.WithSubtext} sourceState="shown" />
+
+---
+
+## Molecule breakdown
+
+<Canvas of={ModalHeaderStories.MoleculeBreakdown} sourceState="shown" />
+
+---
+
+## Usage
+
+```tsx
+import { ModalHeader } from '@/components/Modal';
+
+<ModalHeader
+  title="Change request"
+  subtext="What would you like to update for this order?"
+  onClose={handleClose}
+/>
+```
+
+Pass **`subtext`** only when you need the second line; omit for title-only headers.
+
+---
+
+## Props
+
+<ArgTypes of={ModalHeaderStories} />

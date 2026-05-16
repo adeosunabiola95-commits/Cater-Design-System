@@ -5,7 +5,6 @@ import { Tags } from './Tags';
 const meta: Meta<typeof Tags> = {
   title: 'Components/Tags',
   component: Tags,
-  tags: [],
   parameters: {
     docs: {
       description: {

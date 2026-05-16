@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiRobot2Line) */
+import { RiRobot2Line } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const Ai = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <g clipPath="url(#clip0_172_1741)"><path d="M18 11C17.6123 9.83545 16.9585 8.77726 16.0906 7.90935C15.2227 7.04145 14.1646 6.38772 13 6C14.1646 5.61228 15.2227 4.95855 16.0906 4.09065C16.9585 3.22274 17.6123 2.16455 18 1C18.3877 2.16455 19.0415 3.22274 19.9094 4.09065C20.7773 4.95855 21.8354 5.61228 23 6C21.8354 6.38772 20.7773 7.04145 19.9094 7.90935C19.0415 8.77726 18.3877 9.83545 18 11ZM9 23C8.37903 21.1371 7.33284 19.4443 5.94428 18.0557C4.55573 16.6672 2.86295 15.621 1 15C2.86295 14.379 4.55573 13.3328 5.94428 11.9443C7.33284 10.5557 8.37903 8.86295 9 7C9.62097 8.86295 10.6672 10.5557 12.0557 11.9443C13.4443 13.3328 15.1371 14.379 17 15C15.1371 15.621 13.4443 16.6672 12.0557 18.0557C10.6672 19.4443 9.62097 21.1371 9 23Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></g><defs><clipPath id="clip0_172_1741"><rect width="24" height="24" fill="white"/></clipPath></defs>
-  </svg>
-);
+export const Ai = createRemixIcon(RiRobot2Line, 'Ai');

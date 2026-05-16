@@ -1,8 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiBattery2Line) */
+import { RiBattery2Line } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const Battery2 = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M2 17H18C18.2652 17 18.5196 16.8946 18.7071 16.7071C18.8946 16.5196 19 16.2652 19 16V8C19 7.73478 18.8946 7.48043 18.7071 7.29289C18.5196 7.10536 18.2652 7 18 7H2C1.73478 7 1.48043 7.10536 1.29289 7.29289C1.10536 7.48043 1 7.73478 1 8V16C1 16.2652 1.10536 16.5196 1.29289 16.7071C1.48043 16.8946 1.73478 17 2 17ZM3 9H17V15H3V9ZM22 9C21.7348 9 21.4804 9.10536 21.2929 9.29289C21.1054 9.48043 21 9.73478 21 10V14C21 14.2652 21.1054 14.5196 21.2929 14.7071C21.4804 14.8946 21.7348 15 22 15C22.2652 15 22.5196 14.8946 22.7071 14.7071C22.8946 14.5196 23 14.2652 23 14V10C23 9.73478 22.8946 9.48043 22.7071 9.29289C22.5196 9.10536 22.2652 9 22 9Z" fill="currentColor"/>
-<path d="M4 10V14H12L10 10H4Z" fill="currentColor"/>
-  </svg>
-);
+export const Battery2 = createRemixIcon(RiBattery2Line, 'Battery2');

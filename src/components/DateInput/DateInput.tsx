@@ -71,10 +71,14 @@ export const DateInput: React.FC<DateInputProps> = ({
     [isControlled, onChange]
   );
 
+  const openCalendar = useCallback(() => {
+    if (!disabled) setOpen(true);
+  }, [disabled]);
+
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
-      <Popover.Trigger asChild>
-        <div className={`cursor-pointer ${disabled ? 'cursor-not-allowed' : ''}`}>
+      <Popover.Anchor asChild>
+        <div className={`w-full ${disabled ? '' : 'cursor-pointer'}`}>
           <InputField
             label={label}
             hint={hint}
@@ -83,14 +87,26 @@ export const DateInput: React.FC<DateInputProps> = ({
             placeholder={placeholder}
             disabled={disabled}
             readOnly
-            tabIndex={-1}
+            role="combobox"
+            aria-expanded={open}
+            aria-haspopup="dialog"
+            aria-controls="date-input-picker"
+            onClick={openCalendar}
+            onKeyDown={(e) => {
+              if (disabled) return;
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openCalendar();
+              }
+            }}
             trailingIcon={<DateIcon width={20} height={20} />}
             className={className}
           />
         </div>
-      </Popover.Trigger>
+      </Popover.Anchor>
       <Popover.Portal>
         <Popover.Content
+          id="date-input-picker"
           sideOffset={8}
           align="start"
           className="z-50 outline-none"

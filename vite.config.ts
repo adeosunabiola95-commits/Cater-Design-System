@@ -36,7 +36,22 @@ export default defineConfig({
             browser: 'chromium'
           }]
         },
-        setupFiles: ['.storybook/vitest.setup.ts']
+        setupFiles: ['.storybook/vitest.setup.ts'],
+        coverage: {
+          provider: 'v8',
+          /** Story tests only execute imported code — scope to product UI, not icon inventory. */
+          include: ['src/components/**/*.{ts,tsx}', 'src/examples/**/*.{ts,tsx}'],
+          exclude: [
+            '**/*.stories.*',
+            '**/*.docs.mdx',
+            'src/icons/**',
+            'src/icons/icons/**',
+            'src/tokens/**',
+            'src/examples/**/assets/**',
+            '**/*.{svg,png,jpg,jpeg}',
+          ],
+          reporter: ['text', 'html', 'json-summary'],
+        },
       }
     }]
   }

@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiFileLine) */
+import { RiFileLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const File = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M16.708 1.294C16.6155 1.20157 16.5058 1.12819 16.385 1.078C16.2632 1.02649 16.1323 0.999969 16 1H4C3.73478 1 3.48043 1.10536 3.29289 1.29289C3.10536 1.48043 3 1.73478 3 2V22C3 22.2652 3.10536 22.5196 3.29289 22.7071C3.48043 22.8946 3.73478 23 4 23H20C20.2652 23 20.5196 22.8946 20.7071 22.7071C20.8946 22.5196 21 22.2652 21 22V6C20.999 5.73451 20.8933 5.48013 20.706 5.292L16.708 1.294ZM19 21H5V3H15V6C15 6.26522 15.1054 6.51957 15.2929 6.70711C15.4804 6.89464 15.7348 7 16 7H19V21Z" fill="currentColor"/>
-  </svg>
-);
+export const File = createRemixIcon(RiFileLine, 'File');

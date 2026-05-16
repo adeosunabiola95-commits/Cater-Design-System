@@ -11,12 +11,17 @@ const meta: Meta<typeof Toast> = {
     docs: {
       description: {
         component:
-          'Toast displays a compact dark notification. Extracted from Figma Notification Type=Toast. Supports stacking (newest on top) with motion.dev enter/exit animations.',
+          'Toast — Figma component `3989:7863` (Cater Design System). Dark mirage-900 surface, 10px radius, 12px padding, 21px gap. Message 14px white with optional semibold highlight, Gossip action link, 24px close icon.',
       },
       source: { type: 'dynamic' },
     },
   },
   argTypes: {
+    messageBefore: { control: 'text' },
+    messageHighlight: { control: 'text' },
+    messageAfter: { control: 'text' },
+    actionLabel: { control: 'text' },
+    showAction: { control: 'boolean' },
     children: { control: 'text' },
   },
 };
@@ -24,14 +29,49 @@ const meta: Meta<typeof Toast> = {
 export default meta;
 type Story = StoryObj<typeof Toast>;
 
+/** Figma default: cart confirmation with View action */
 export const Default: Story = {
   args: {
-    children: 'Payment added',
+    messageBefore: 'Your ',
+    messageHighlight: 'Basic Breakfast Bar',
+    messageAfter: ' has been added to cart',
+    actionLabel: 'View',
+    showAction: true,
+    onAction: () => {},
     onClose: () => {},
   },
 };
 
-const STACK_MESSAGES = ['Payment added', 'Item saved', 'Settings updated', 'Link copied', 'Changes saved'] as const;
+export const WithoutAction: Story = {
+  name: 'Without action',
+  args: {
+    messageBefore: 'Your ',
+    messageHighlight: 'Basic Breakfast Bar',
+    messageAfter: ' has been added to cart',
+    showAction: false,
+    onClose: () => {},
+  },
+};
+
+export const SimpleMessage: Story = {
+  name: 'Simple message',
+  args: {
+    children: 'Payment added',
+    showAction: false,
+    onClose: () => {},
+  },
+};
+
+const STACK_ITEMS = [
+  {
+    messageBefore: 'Your ',
+    messageHighlight: 'Basic Breakfast Bar',
+    messageAfter: ' has been added to cart',
+  },
+  { children: 'Item saved' },
+  { children: 'Settings updated' },
+  { children: 'Link copied' },
+] as const;
 
 const TOAST_DURATION_MS = 5000;
 
@@ -53,20 +93,22 @@ export const Stacking: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Click the button multiple times to add toasts. New toasts stack on top; each auto-dismisses after 5s and can be dismissed manually. Uses motion.dev spring animations for enter/exit.',
+        story:
+          'Click the button multiple times to add toasts. New toasts stack on top; each auto-dismisses after 5s and can be dismissed manually.',
       },
+      source: { type: 'dynamic' },
     },
   },
   render: function StackingRender() {
-    const [toasts, setToasts] = React.useState<{ id: number; message: string }[]>([]);
+    const [toasts, setToasts] = React.useState<{ id: number; payload: (typeof STACK_ITEMS)[number] }[]>([]);
     const idRef = React.useRef(0);
     const msgIndexRef = React.useRef(0);
 
     const addToast = React.useCallback(() => {
-      const message = STACK_MESSAGES[msgIndexRef.current % STACK_MESSAGES.length];
+      const payload = STACK_ITEMS[msgIndexRef.current % STACK_ITEMS.length];
       msgIndexRef.current += 1;
       const id = ++idRef.current;
-      setToasts((prev) => [{ id, message }, ...prev]);
+      setToasts((prev) => [{ id, payload }, ...prev]);
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== id));
       }, TOAST_DURATION_MS);
@@ -86,7 +128,13 @@ export const Stacking: Story = {
             <div className="fixed bottom-8 right-8 flex flex-col gap-2 items-end z-50 pointer-events-none">
               {toasts.map((toast) => (
                 <motion.div key={toast.id} layout {...toastStackAnimation} className="pointer-events-auto">
-                  <Toast onClose={() => removeToast(toast.id)}>{toast.message}</Toast>
+                  <Toast
+                    {...toast.payload}
+                    actionLabel="View"
+                    showAction={'children' in toast.payload ? false : true}
+                    onAction={() => {}}
+                    onClose={() => removeToast(toast.id)}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -102,8 +150,9 @@ export const AnimatedExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Click the button to show a single animated Toast. Uses motion for enter/exit.',
+        story: 'Click the button to show a single animated Toast matching the Figma default.',
       },
+      source: { type: 'dynamic' },
     },
   },
   render: function AnimatedExampleRender() {
@@ -111,7 +160,9 @@ export const AnimatedExample: Story = {
     return (
       <div className="flex min-h-[400px] justify-center items-center">
         <div className="flex flex-col gap-4 items-center">
-          <Button size="small" onClick={() => setVisible((v) => !v)}>Click me</Button>
+          <Button size="small" onClick={() => setVisible((v) => !v)}>
+            Click me
+          </Button>
           <AnimatePresence>
             {visible && (
               <motion.div
@@ -120,7 +171,14 @@ export const AnimatedExample: Story = {
                 exit={{ opacity: 0, y: 8, scale: 0.96, filter: 'blur(6px)' }}
                 transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
               >
-                <Toast onClose={() => setVisible(false)}>Payment added</Toast>
+                <Toast
+                  messageBefore="Your "
+                  messageHighlight="Basic Breakfast Bar"
+                  messageAfter=" has been added to cart"
+                  actionLabel="View"
+                  onAction={() => {}}
+                  onClose={() => setVisible(false)}
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -129,3 +187,4 @@ export const AnimatedExample: Story = {
     );
   },
 };
+

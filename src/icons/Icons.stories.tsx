@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState, type SVGProps, type FC } from 'react';
+import { useState, type FC } from 'react';
 import { iconCategories, type IconCategory } from './categories';
+import type { CaterIconProps } from './createRemixIcon';
 import * as AllIcons from './index';
 
-type IconComponent = FC<SVGProps<SVGSVGElement>>;
+type IconComponent = FC<CaterIconProps>;
 
 const allIconEntries: [string, IconComponent][] = Object.entries(AllIcons).filter(
   ([key, val]) => typeof val === 'function' && key !== 'Icon' && key[0] === key[0].toUpperCase()
@@ -13,6 +14,8 @@ function IconCell({ name, IconComp, size = 24 }: { name: string; IconComp: IconC
   const [copied, setCopied] = useState(false);
   return (
     <button
+      type="button"
+      aria-label={`Copy import for ${name}`}
       onClick={() => {
         navigator.clipboard.writeText(`import { ${name} } from '@/icons';`);
         setCopied(true);
@@ -44,7 +47,7 @@ function GalleryView() {
           onChange={e => setFilter(e.target.value)}
           className="w-full max-w-md px-4 py-2 border border-mirage-300 rounded-lg text-sm font-body focus:outline-none focus:border-salem-500 focus:ring-1 focus:ring-salem-500"
         />
-        <p className="text-sm text-mirage-500 mt-2 font-body">
+        <p className="text-sm text-mirage-700 mt-2 font-body">
           {filtered.length} of {allIconEntries.length} icons{filter && ` matching "${filter}"`}
         </p>
       </div>
@@ -71,7 +74,7 @@ function ByCategoryView() {
         return (
           <div key={category}>
             <h3 className="text-lg font-title font-semibold text-mirage-900 mb-1">{category}</h3>
-            <p className="text-sm text-mirage-500 font-body mb-4">{categoryIcons.length} icons</p>
+            <p className="text-sm text-mirage-700 font-body mb-4">{categoryIcons.length} icons</p>
             <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-1">
               {categoryIcons.map(({ name, Icon }) => (
                 <IconCell key={name} name={name} IconComp={Icon} />
@@ -91,14 +94,14 @@ function SizesView() {
   const sizes = [16, 20, 24, 32, 40, 48];
   return (
     <div className="space-y-6">
-      <p className="text-sm text-mirage-500 font-body">
+      <p className="text-sm text-mirage-700 font-body">
         Icons accept a standard <code className="bg-mirage-50 px-1 rounded text-xs">width</code> and <code className="bg-mirage-50 px-1 rounded text-xs">height</code> prop. Default is 24x24.
       </p>
       <div className="flex items-end gap-8">
         {sizes.map(s => (
           <div key={s} className="flex flex-col items-center gap-2">
             <SampleIcon width={s} height={s} className="text-mirage-900" />
-            <span className="text-xs text-mirage-500 font-body">{s}px</span>
+            <span className="text-xs text-mirage-700 font-body">{s}px</span>
           </div>
         ))}
       </div>
@@ -121,14 +124,14 @@ function ColorsView() {
   ];
   return (
     <div className="space-y-6">
-      <p className="text-sm text-mirage-500 font-body">
+      <p className="text-sm text-mirage-700 font-body">
         Icons use <code className="bg-mirage-50 px-1 rounded text-xs">currentColor</code> for fill, so they inherit the text color. Use Tailwind <code className="bg-mirage-50 px-1 rounded text-xs">text-*</code> utilities.
       </p>
       <div className="flex items-center gap-8">
         {colors.map(c => (
           <div key={c.name} className="flex flex-col items-center gap-2">
             <SampleIcon width={32} height={32} className={c.cls} />
-            <span className="text-xs text-mirage-500 font-body">{c.name}</span>
+            <span className="text-xs text-mirage-700 font-body">{c.name}</span>
           </div>
         ))}
       </div>

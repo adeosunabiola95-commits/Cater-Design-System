@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiBookLine) */
+import { RiBookLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const Book = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M20 23C20.2652 23 20.5196 22.8946 20.7071 22.7071C20.8946 22.5196 21 22.2652 21 22V2C21 1.73478 20.8946 1.48043 20.7071 1.29289C20.5196 1.10536 20.2652 1 20 1H6C5.20435 1 4.44129 1.31607 3.87868 1.87868C3.31607 2.44129 3 3.20435 3 4V20C3 20.7956 3.31607 21.5587 3.87868 22.1213C4.44129 22.6839 5.20435 23 6 23H20ZM5 4C5 3.73478 5.10536 3.48043 5.29289 3.29289C5.48043 3.10536 5.73478 3 6 3H19V16H5V4ZM5 20V18H19V21H6C5.73478 21 5.48043 20.8946 5.29289 20.7071C5.10536 20.5196 5 20.2652 5 20Z" fill="currentColor"/>
-  </svg>
-);
+export const Book = createRemixIcon(RiBookLine, 'Book');

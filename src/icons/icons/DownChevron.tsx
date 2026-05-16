@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiArrowDownSLine) */
+import { RiArrowDownSLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const DownChevron = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M17 8H6.99997C6.80978 7.99991 6.6235 8.05407 6.46299 8.15611C6.30249 8.25815 6.17442 8.40385 6.09379 8.57612C6.01317 8.74838 5.98335 8.94006 6.00783 9.12868C6.0323 9.31729 6.11006 9.49502 6.23197 9.641L11.232 15.641C11.3258 15.7535 11.4433 15.8441 11.576 15.9062C11.7087 15.9683 11.8534 16.0005 12 16.0005C12.1465 16.0005 12.2913 15.9683 12.424 15.9062C12.5567 15.8441 12.6741 15.7535 12.768 15.641L17.768 9.641C17.8899 9.49502 17.9676 9.31729 17.9921 9.12868C18.0166 8.94006 17.9868 8.74838 17.9061 8.57612C17.8255 8.40385 17.6975 8.25815 17.5369 8.15611C17.3764 8.05407 17.1902 7.99991 17 8ZM12 13.438L9.13497 10H14.865L12 13.438Z" fill="currentColor"/>
-  </svg>
-);
+export const DownChevron = createRemixIcon(RiArrowDownSLine, 'DownChevron');

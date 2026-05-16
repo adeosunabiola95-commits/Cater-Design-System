@@ -6,7 +6,7 @@ import * as InputFieldStories from './InputField.stories';
 
 # Input Field
 
-Input fields allow users to enter and edit text. Supports 2 sizes, 5 types with optional leading/trailing icons and suffix panels, and error states with accessible validation messaging.
+Input fields allow users to enter and edit text. Figma component set `99:960`. Supports **default**, **ghost**, and **filled** value states, 2 sizes, 5 types, and error action with accessible validation messaging.
 
 ---
 
@@ -16,11 +16,25 @@ A standard text input with a label, trailing chevron, and helper text.
 
 <Canvas of={InputFieldStories.Default} sourceState="shown" />
 
-## With Value
+## Filled State
 
-An input field with pre-filled content.
+When the field has a value (or `state="filled"`), input text uses `text-text-body` (`#29344A`) so typed content reads darker than the empty default (`#68707C`).
 
-<Canvas of={InputFieldStories.WithValue} sourceState="shown" />
+<Canvas of={InputFieldStories.Filled} sourceState="shown" />
+
+Omit `state` and the component picks **filled** automatically when `value` / `defaultValue` is non-empty.
+
+<Canvas of={InputFieldStories.FilledAuto} sourceState="shown" />
+
+## Ghost State
+
+Copy-type fields use the lighter ghost tone (`text-text-caption`, `#B2B8C1`).
+
+<Canvas of={InputFieldStories.Ghost} sourceState="shown" />
+
+## All States
+
+<Canvas of={InputFieldStories.AllStates} sourceState="shown" />
 
 ## Error State
 
@@ -36,6 +50,25 @@ When validation fails, the border changes to `error-border`, the focus ring turn
 - **Medium (md)**: `12px` vertical / `12px` horizontal padding, `48px` field height
 
 <Canvas of={InputFieldStories.AllSizes} sourceState="shown" />
+
+---
+
+## Practical input kinds
+
+Pass **`inputKind`** so each field uses the right HTML `type`, mobile keyboard, `autoComplete`, and character filtering:
+
+| `inputKind` | Use for | Behavior |
+| ----------- | ------- | -------- |
+| `email` | Email addresses | `type="email"`, email keyboard, strips spaces |
+| `phone` | Phone numbers | `type="tel"`, telephone keypad, digits / `+` / `()` / spaces only |
+| `url` | Websites, copy fields | `type="url"`, URL keyboard |
+| `name` | Person or business names | Letters, spaces, `'`, `.`, `-` only |
+| `search` | Lookup / filter fields | `type="search"`, search keyboard |
+| `amount` | Currency | Decimal keypad, digits / `.` / `$` |
+| `number` | Quantities | Numeric keypad, digits only |
+| `text` | General text | Default (no filtering) |
+
+<Canvas of={InputFieldStories.PracticalKinds} sourceState="shown" />
 
 ---
 
@@ -65,9 +98,21 @@ Trailing `Date` icon for date picker trigger.
 
 <Canvas of={InputFieldStories.DateType} sourceState="shown" />
 
+### Email
+
+`inputKind="email"` — email keyboard and built-in format validation.
+
+<Canvas of={InputFieldStories.EmailType} sourceState="shown" />
+
+### Phone
+
+`inputKind="phone"` — telephone keypad; only phone characters accepted.
+
+<Canvas of={InputFieldStories.PhoneType} sourceState="shown" />
+
 ### Copy
 
-Two-part layout: white input area on the left, grey suffix panel on the right with a `Copy` icon and "Copy" label. Clicking copies the value to clipboard.
+Two-part layout: white input area on the left, grey suffix panel on the right with a `Copy` icon and "Copy" label. Uses `inputKind="url"`. Clicking copies the value to clipboard.
 
 <Canvas of={InputFieldStories.CopyType} sourceState="shown" />
 
@@ -103,6 +148,7 @@ Disabled inputs have reduced opacity and a not-allowed cursor.
 
 - **Do**: Always include a label for accessibility
 - **Do**: Provide hint text to clarify what the user should enter
+- **Do**: Set `inputKind` to match the data you collect (`email`, `phone`, `url`, etc.)
 - **Do**: Use the error action state with a descriptive error message
 - **Don't**: Use placeholder text as a replacement for labels
 - **Don't**: Disable inputs without explaining why

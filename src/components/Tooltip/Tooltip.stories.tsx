@@ -1,12 +1,21 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from 'storybook/test';
 import { Tooltip } from './Tooltip';
 import { Button } from '../Button/Button';
+
+/** Hover trigger so portal tooltip code runs under Vitest / coverage. */
+async function hoverTooltipTrigger(canvasElement: HTMLElement, name: RegExp | string) {
+  const canvas = within(canvasElement);
+  const trigger = canvas.getByRole('button', { name });
+  await userEvent.hover(trigger);
+  await expect(document.querySelector('[role="tooltip"]')).toBeTruthy();
+  await userEvent.unhover(trigger);
+}
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
   component: Tooltip,
-  tags: [],
   parameters: {
     layout: 'centered',
     docs: {
@@ -67,6 +76,9 @@ export const Dark: Story = {
     placement: 'top-center',
     children: <Button variant="outline">Hover me</Button>,
   },
+  play: async ({ canvasElement }) => {
+    await hoverTooltipTrigger(canvasElement, /hover me/i);
+  },
 };
 
 export const Light: Story = {
@@ -75,6 +87,9 @@ export const Light: Story = {
     color: 'light',
     placement: 'top-center',
     children: <Button variant="outline">Hover me</Button>,
+  },
+  play: async ({ canvasElement }) => {
+    await hoverTooltipTrigger(canvasElement, /hover me/i);
   },
 };
 
@@ -152,11 +167,20 @@ export const Description: Story = {
     placement: "top-center",
     children: <Button variant="outline">Description</Button>,
   },
+  play: async ({ canvasElement }) => {
+    await hoverTooltipTrigger(canvasElement, /description/i);
+  },
 };
 
 // ===== ALL 24 VARIANTS GRID =====
 
 export const AllVariants: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.hover(canvas.getAllByRole('button')[0]!);
+    await expect(document.querySelector('[role="tooltip"]')).toBeTruthy();
+    await userEvent.unhover(canvas.getAllByRole('button')[0]!);
+  },
   render: () => (
     <div className="flex flex-wrap gap-8 p-16">
       {(['dark', 'light'] as const).map((color) =>

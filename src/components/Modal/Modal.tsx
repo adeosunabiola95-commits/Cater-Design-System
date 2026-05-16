@@ -1,25 +1,29 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Button, type ButtonProps } from '../Button';
-import { Cancel } from '../../icons';
+import { ModalActions } from './ModalActions';
+import { ModalBody } from './ModalBody';
+import { ModalHeader } from './ModalHeader/index';
 
 export type ModalSize = 'sm' | 'md' | 'lg' | 'select-campaign';
 
 export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
-  /** Controls whether the modal is visible */
   open: boolean;
-  /** Called when the overlay or close button is clicked */
   onClose: () => void;
-  /** Title text for the dialog header */
-  title?: React.ReactNode;
-  /** Optional description under the title */
+  /** Header title — required for the standard header + body + actions layout. */
+  title: React.ReactNode;
+  /**
+   * Optional header subtext (Figma *Header container with subtext* `4684:19918`).
+   * Omit for title-only headers (`4684:19909`).
+   */
   description?: React.ReactNode;
-  /** Optional footer content (e.g. buttons). If omitted, a default primary + ghost pair can be passed via children. */
+  /** Main content — scrollable body between header and actions. */
+  children?: React.ReactNode;
+  /** Action row (buttons) below the body. */
+  actions?: React.ReactNode;
+  /** @deprecated Use `actions` */
   footer?: React.ReactNode;
-  /** Width of the dialog */
   size?: ModalSize;
-  /** Title typography. large = Semibold 25px / 120% (Figma Modals header). */
-  titleSize?: 'default' | 'large';
 }
 
 const sizeClasses: Record<ModalSize, string> = {
@@ -34,11 +38,11 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   description,
+  children,
+  actions,
   footer,
   size = 'md',
-  titleSize = 'default',
   className = '',
-  children,
   onDrag,
   onDragStart,
   onDragEnd,
@@ -48,6 +52,8 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const labelId = React.useId();
   const descriptionId = React.useId();
+  const reduceMotion = useReducedMotion();
+  const actionContent = actions ?? footer;
 
   return (
     <AnimatePresence>
@@ -56,29 +62,26 @@ export const Modal: React.FC<ModalProps> = ({
           key="modal-overlay"
           className="fixed inset-0 z-40 flex items-center justify-center bg-[rgba(15,23,42,0.45)]"
           onClick={onClose}
-          initial={{ opacity: 0 }}
+          initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
           <motion.div
             key="modal-panel"
             role="dialog"
             aria-modal="true"
-            aria-labelledby={title ? labelId : undefined}
+            aria-labelledby={labelId}
             aria-describedby={description ? descriptionId : undefined}
             className={[
-              'relative z-50 w-full max-h-[85vh] overflow-hidden',
+              'relative z-50 flex w-full max-h-[85vh] flex-col overflow-hidden',
               sizeClasses[size],
-              'bg-white',
-              'rounded-[var(--radius-modal)] shadow-lg',
-              'border border-dialogue-outline',
-              'flex flex-col',
+              'bg-white rounded-[var(--radius-modal)] shadow-lg border border-dialogue-outline',
               className,
             ].join(' ')}
-            initial={{ opacity: 0, y: 24, scale: 0.97, filter: 'blur(6px)' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.97, filter: 'blur(6px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: 12, scale: 0.97, filter: 'blur(6px)' }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.97, filter: 'blur(6px)' }}
             transition={{
               type: 'spring',
               stiffness: 420,
@@ -89,54 +92,19 @@ export const Modal: React.FC<ModalProps> = ({
             onClick={e => e.stopPropagation()}
             {...props}
           >
-            {/* Header: Figma Modals — Header container (padding 24, gap 32, close 35×35) */}
-            <div className="flex items-start justify-between gap-8 border-b border-border-subtle p-6">
-              <div className="flex min-w-0 flex-1 flex-col gap-3">
-                {title && (
-                  <h2
-                    id={labelId}
-                    className={
-                      titleSize === 'large'
-                        ? 'font-body font-semibold text-[25px] leading-[120%] text-text-title'
-                        : 'font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-title'
-                    }
-                  >
-                    {title}
-                  </h2>
-                )}
-                {description && (
-                  <p
-                    id={descriptionId}
-                    className="font-body text-[14px] leading-[150%] text-text-subtitle"
-                  >
-                    {description}
-                  </p>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close dialog"
-                className="box-border shrink-0 flex size-[35px] items-center justify-center rounded-full border border-border-subtle p-2 text-text-subtitle hover:bg-mirage-100 focus:outline-none focus:ring-2 focus:ring-mirage-900/15"
-              >
-                <Cancel width={18} height={18} />
-              </button>
-            </div>
+            <ModalHeader
+              title={title}
+              subtext={description}
+              onClose={onClose}
+              labelId={labelId}
+              descriptionId={descriptionId}
+              closeLabel="Close dialog"
+            />
 
-            <div
-              className={
-                size === 'select-campaign'
-                  ? 'flex flex-1 flex-col overflow-hidden'
-                  : 'flex-1 overflow-auto px-6 pb-6 pt-6'
-              }
-            >
-              {children}
-            </div>
+            <ModalBody flush={size === 'select-campaign'}>{children}</ModalBody>
 
-            {footer && (
-              <div className="shrink-0 flex justify-end gap-3 border-t border-border-subtle bg-white px-6 py-6">
-                {footer}
-              </div>
+            {actionContent != null && actionContent !== false && (
+              <ModalActions>{actionContent}</ModalActions>
             )}
           </motion.div>
         </motion.div>
@@ -148,15 +116,16 @@ export const Modal: React.FC<ModalProps> = ({
 export interface DrawerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   open: boolean;
   onClose: () => void;
-  title?: React.ReactNode;
+  title: React.ReactNode;
   description?: React.ReactNode;
+  children?: React.ReactNode;
+  actions?: React.ReactNode;
+  /** @deprecated Use `actions` */
   footer?: React.ReactNode;
-  /** Side of the viewport the drawer slides from */
   side?: 'right' | 'left';
   width?: 'sm' | 'md';
 }
 
-// Figma 486:2140: sm = 381px, md = 420px
 const drawerWidth: Record<NonNullable<DrawerProps['width']>, string> = {
   sm: 'w-[381px] max-w-full',
   md: 'w-[420px] max-w-full',
@@ -167,11 +136,12 @@ export const Drawer: React.FC<DrawerProps> = ({
   onClose,
   title,
   description,
+  children,
+  actions,
   footer,
   side = 'right',
   width = 'md',
   className = '',
-  children,
   onDrag,
   onDragStart,
   onDragEnd,
@@ -182,6 +152,8 @@ export const Drawer: React.FC<DrawerProps> = ({
   const labelId = React.useId();
   const descriptionId = React.useId();
   const isRight = side === 'right';
+  const reduceMotion = useReducedMotion();
+  const actionContent = actions ?? footer;
 
   return (
     <AnimatePresence>
@@ -190,16 +162,16 @@ export const Drawer: React.FC<DrawerProps> = ({
           key="drawer-overlay"
           className="fixed inset-0 z-40 bg-[rgba(15,23,42,0.45)]"
           onClick={onClose}
-          initial={{ opacity: 0 }}
+          initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <motion.aside
+          <motion.div
             key="drawer-panel"
             role="dialog"
             aria-modal="true"
-            aria-labelledby={title ? labelId : undefined}
+            aria-labelledby={labelId}
             aria-describedby={description ? descriptionId : undefined}
             className={[
               'absolute top-0 bottom-0 flex flex-col overflow-hidden bg-white border-dialogue-outline shadow-lg',
@@ -209,65 +181,44 @@ export const Drawer: React.FC<DrawerProps> = ({
               drawerWidth[width],
               className,
             ].join(' ')}
-            initial={{
-              x: isRight ? 48 : -48,
-              opacity: 0,
-              filter: 'blur(6px)',
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-              filter: 'blur(0px)',
-            }}
-            exit={{
-              x: isRight ? 32 : -32,
-              opacity: 0,
-              filter: 'blur(6px)',
-            }}
-            transition={{
-              duration: 0.5,
-              ease: [0.32, 0.72, 0, 1],
-            }}
+            initial={
+              reduceMotion
+                ? false
+                : {
+                    x: isRight ? 48 : -48,
+                    opacity: 0,
+                    filter: 'blur(6px)',
+                  }
+            }
+            animate={{ x: 0, opacity: 1, filter: 'blur(0px)' }}
+            exit={
+              reduceMotion
+                ? undefined
+                : {
+                    x: isRight ? 32 : -32,
+                    opacity: 0,
+                    filter: 'blur(6px)',
+                  }
+            }
+            transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
             onClick={e => e.stopPropagation()}
             {...props}
           >
-            <div className="flex items-start justify-between gap-8 border-b border-border-subtle p-6">
-              <div className="flex min-w-0 flex-1 flex-col gap-3">
-                {title && (
-                  <h2
-                    id={labelId}
-                    className="font-body font-semibold text-[16px] leading-[150%] tracking-[0.16px] text-text-title"
-                  >
-                    {title}
-                  </h2>
-                )}
-                {description && (
-                  <p
-                    id={descriptionId}
-                    className="font-body text-[14px] leading-[150%] text-text-subtitle"
-                  >
-                    {description}
-                  </p>
-                )}
-              </div>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close drawer"
-                className="box-border shrink-0 flex size-[35px] items-center justify-center rounded-full border border-border-subtle p-2 text-text-subtitle hover:bg-mirage-100 focus:outline-none focus:ring-2 focus:ring-mirage-900/15"
-              >
-                <Cancel width={18} height={18} />
-              </button>
-            </div>
+            <ModalHeader
+              title={title}
+              subtext={description}
+              onClose={onClose}
+              labelId={labelId}
+              descriptionId={descriptionId}
+              closeLabel="Close drawer"
+            />
 
-            <div className="flex-1 overflow-auto px-6 py-8">{children}</div>
+            <ModalBody>{children}</ModalBody>
 
-            {footer && (
-              <div className="shrink-0 flex justify-end gap-3 border-t border-border-subtle bg-white px-6 py-6">
-                {footer}
-              </div>
+            {actionContent != null && actionContent !== false && (
+              <ModalActions>{actionContent}</ModalActions>
             )}
-          </motion.aside>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -280,7 +231,6 @@ export interface ModalPrimaryActionsProps {
   secondaryLabel?: string;
   onSecondary?: () => void;
   primaryDisabled?: boolean;
-  /** Visual variant for the secondary button (e.g. 'outline', 'ghost'). Defaults to 'ghost'. */
   secondaryVariant?: ButtonProps['variant'];
 }
 
@@ -295,12 +245,7 @@ export const ModalPrimaryActions: React.FC<ModalPrimaryActionsProps> = ({
   return (
     <>
       {secondaryLabel && (
-        <Button
-          variant={secondaryVariant}
-          size="small"
-          type="button"
-          onClick={onSecondary}
-        >
+        <Button variant={secondaryVariant} size="small" type="button" onClick={onSecondary}>
           {secondaryLabel}
         </Button>
       )}
@@ -316,4 +261,3 @@ export const ModalPrimaryActions: React.FC<ModalPrimaryActionsProps> = ({
     </>
   );
 };
-

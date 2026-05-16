@@ -7,7 +7,6 @@ import { Radio } from '../Radio';
 const meta: Meta<typeof Badge> = {
   title: 'Components/Badge',
   component: Badge,
-  tags: [],
   parameters: {
     docs: {
       description: {

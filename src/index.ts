@@ -7,6 +7,7 @@ export * from './components/Checkbox';
 export * from './components/DatePicker';
 export * from './components/DateInput';
 export * from './components/InputField';
+export * from './components/Logo';
 export * from './components/MessageBox';
 export * from './components/Modal';
 export * from './components/NotificationGroup';

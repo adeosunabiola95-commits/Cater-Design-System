@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiArrowUpDoubleLine) */
+import { RiArrowUpDoubleLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const UpArrow2 = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M12.768 8.35924C12.6709 8.25182 12.5524 8.16596 12.4202 8.1072C12.2879 8.04843 12.1447 8.01807 12 8.01807C11.8552 8.01807 11.7121 8.04843 11.5798 8.1072C11.4475 8.16596 11.329 8.25182 11.232 8.35924L6.23197 14.3592C6.11006 14.5052 6.0323 14.6829 6.00783 14.8716C5.98335 15.0602 6.01317 15.2519 6.09379 15.4241C6.17442 15.5964 6.30249 15.7421 6.46299 15.8441C6.6235 15.9462 6.80978 16.0003 6.99997 16.0002H17C17.1902 16.0003 17.3764 15.9462 17.5369 15.8441C17.6975 15.7421 17.8255 15.5964 17.9061 15.4241C17.9868 15.2519 18.0166 15.0602 17.9921 14.8716C17.9676 14.6829 17.8899 14.5052 17.768 14.3592L12.768 8.35924ZM9.13497 14.0002L12 10.5632L14.865 14.0002H9.13497Z" fill="currentColor"/>
-  </svg>
-);
+export const UpArrow2 = createRemixIcon(RiArrowUpDoubleLine, 'UpArrow2');

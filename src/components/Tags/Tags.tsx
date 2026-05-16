@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { Checkbox } from '../Checkbox';
 
 export type TagsSize = 'sm' | 'md';
@@ -99,6 +99,9 @@ export const Tags = React.forwardRef<HTMLSpanElement, TagsProps>(
     const showCheckbox = type === 'withcheckbox';
     const showFlag = type === 'withflags';
     const showCount = state === 'withtag' && count != null;
+    const labelId = useId();
+    const checkboxLabel =
+      typeof children === 'string' ? children : typeof children === 'number' ? String(children) : 'Tag';
 
     const isHover = state === 'hover';
 
@@ -124,11 +127,13 @@ export const Tags = React.forwardRef<HTMLSpanElement, TagsProps>(
             checked={checked}
             defaultChecked={defaultChecked}
             onChange={onCheckedChange}
+            aria-label={checkboxLabel}
+            wrapInLabel={false}
             className="shrink-0 m-0 p-0"
           />
         )}
         {showFlag && (iconElement ?? <DefaultFlagIcon size={iconSize} className="text-text-title shrink-0" />)}
-        <span>{children}</span>
+        <span id={showCheckbox ? labelId : undefined}>{children}</span>
         {showCount && <span className="text-text-caption">{count}</span>}
         {showCancel && (
           <button

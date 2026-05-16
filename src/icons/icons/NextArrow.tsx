@@ -1,7 +1,5 @@
-import type { SVGProps } from 'react';
+/** @generated — Remix Icon (RiArrowRightLine) */
+import { RiArrowRightLine } from '@remixicon/react';
+import { createRemixIcon } from '../createRemixIcon';
 
-export const NextArrow = (props: SVGProps<SVGSVGElement>) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M22.707 12.7069C22.8945 12.5194 22.9998 12.2651 22.9998 11.9999C22.9998 11.7348 22.8945 11.4804 22.707 11.2929L17.707 6.29292C17.5184 6.11076 17.2658 6.00997 17.0036 6.01224C16.7414 6.01452 16.4906 6.11969 16.3052 6.3051C16.1198 6.49051 16.0146 6.74132 16.0123 7.00352C16.01 7.26571 16.1108 7.51832 16.293 7.70692L19.586 10.9999H2C1.73478 10.9999 1.48043 11.1053 1.29289 11.2928C1.10536 11.4803 1 11.7347 1 11.9999C1 12.2651 1.10536 12.5195 1.29289 12.707C1.48043 12.8946 1.73478 12.9999 2 12.9999H19.586L16.293 16.2929C16.1108 16.4815 16.01 16.7341 16.0123 16.9963C16.0146 17.2585 16.1198 17.5093 16.3052 17.6947C16.4906 17.8801 16.7414 17.9853 17.0036 17.9876C17.2658 17.9899 17.5184 17.8891 17.707 17.7069L22.707 12.7069Z" fill="currentColor"/>
-  </svg>
-);
+export const NextArrow = createRemixIcon(RiArrowRightLine, 'NextArrow');

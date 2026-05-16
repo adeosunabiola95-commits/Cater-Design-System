@@ -180,6 +180,60 @@ body.sb-show-nopreview > #storybook-docs {
   border-bottom: 1px solid #e4e7ec !important;
 }
 
+/*
+ * Prose rules above target `.sbdocs-content p` with !important (dark grey body copy).
+ * That bleeds into Canvas previews (e.g. Toast message on mirage-900). Reset paragraph
+ * typography only — do NOT reset buttons/links/spans so Primary (Gossip label) and
+ * Toast "View" (text-brand-gossip) keep their token colors.
+ */
+.sbdocs-preview p {
+  font-family: unset !important;
+  font-size: unset !important;
+  line-height: unset !important;
+  letter-spacing: unset !important;
+  font-weight: unset !important;
+  color: unset !important;
+  max-width: unset !important;
+}
+
+/* Ensure token text utilities win inside docs canvases (Toast message + View, Primary button). */
+.sbdocs-preview .text-white {
+  color: #ffffff !important;
+}
+
+.sbdocs-preview .text-brand-gossip {
+  color: #ccf8b9 !important;
+}
+
+/*
+ * Modal header (ModalHeader molecule) — docs prose targets `.sbdocs-content h2` / `p`
+ * and overrides General Sans 25px title + 14px subtitle inside Canvas previews.
+ */
+.sbdocs-content header[data-variant] h2,
+.sbdocs-preview header[data-variant] h2 {
+  font-family: var(--font-title, 'General Sans', 'Inter', system-ui, sans-serif) !important;
+  font-size: 25px !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  letter-spacing: -0.02em !important;
+  color: #101828 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sbdocs-content header[data-variant] p,
+.sbdocs-preview header[data-variant] p {
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 21px !important;
+  letter-spacing: 0.01em !important;
+  color: #68707c !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
 /* Args / props tables */
 .docblock-argstable {
   font-family: 'Inter', system-ui, sans-serif !important;
@@ -227,9 +281,9 @@ body.sb-show-nopreview > #storybook-docs {
 }
 
 .sbdocs-content .intro-hero-heading {
-  font-family: 'Inter', system-ui, sans-serif !important;
-  font-size: 2.25rem !important;
-  font-weight: 700 !important;
+  font-family: var(--font-title, 'General Sans', 'Inter', system-ui, sans-serif) !important;
+  font-size: 2.3175rem !important;
+  font-weight: 600 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.15 !important;
   color: #101828 !important;
@@ -247,23 +301,38 @@ body.sb-show-nopreview > #storybook-docs {
   max-width: none !important;
 }
 
+.sbdocs-content .intro-hero-figma {
+  margin: 1rem 0 0 !important;
+}
+
+.sbdocs-content a.intro-external-link {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  color: #073d30 !important;
+  text-decoration: none !important;
+}
+
+.sbdocs-content a.intro-external-link:hover {
+  color: #1e6151 !important;
+  text-decoration: underline !important;
+}
+
+.sbdocs-content .intro-info-callout a.intro-external-link {
+  font-size: 0.875rem !important;
+}
+
 .sbdocs-content .intro-actions {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
   margin: 0 0 3rem;
   max-width: none !important;
 }
 
-@media (max-width: 900px) {
-  .sbdocs-content .intro-actions {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 520px) {
   .sbdocs-content .intro-actions {
-    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -287,193 +356,28 @@ body.sb-show-nopreview > #storybook-docs {
 }
 
 .sbdocs-content .intro-action-visual {
-  min-height: 112px;
+  aspect-ratio: 16 / 4.86;
+  min-height: 5.4rem;
   background: #f2f4f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1.25rem;
+  overflow: hidden;
   border-bottom: 1px solid #e4e7ec;
 }
 
-.sbdocs-content .intro-action-visual--colors {
-  gap: 6px;
-  flex-wrap: wrap;
-  align-content: center;
+@media (min-width: 768px) {
+  .sbdocs-content .intro-action-visual {
+    min-height: 6.75rem;
+  }
 }
 
-.sbdocs-content .intro-swatch {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  flex-shrink: 0;
-  border: 1px solid rgba(16, 24, 40, 0.08);
-}
-
-.sbdocs-content .intro-action-visual--type {
-  flex-direction: column;
-  gap: 0.25rem;
-  align-items: flex-start;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.sbdocs-content .intro-type-sample-lg {
-  font-family: var(--font-title, 'General Sans', 'Inter', sans-serif) !important;
-  font-size: 2rem !important;
-  font-weight: 700 !important;
-  color: #101828 !important;
-  line-height: 1 !important;
-}
-
-.sbdocs-content .intro-type-sample-sm {
-  font-family: 'Inter', system-ui, sans-serif !important;
-  font-size: 0.8125rem !important;
-  color: #667085 !important;
-}
-
-.sbdocs-content .intro-action-visual--icons {
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.sbdocs-content .intro-icon-sample {
-  color: #344054 !important;
-  flex-shrink: 0;
-}
-
-.sbdocs-content .intro-action-visual--spacing {
-  gap: 10px;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 1.25rem;
-}
-
-.sbdocs-content .intro-space-bar {
+.sbdocs-content .intro-action-image {
   display: block;
-  height: 8px;
-  border-radius: 4px;
-  background: #667085;
-  opacity: 0.35;
-}
-
-.sbdocs-content .intro-space-bar--1 {
-  width: 16px;
-}
-.sbdocs-content .intro-space-bar--2 {
-  width: 32px;
-}
-.sbdocs-content .intro-space-bar--3 {
-  width: 48px;
-}
-.sbdocs-content .intro-space-bar--4 {
-  width: 64px;
-}
-
-.sbdocs-content .intro-action-visual--radius {
-  gap: 8px;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-}
-
-.sbdocs-content .intro-radius-chip {
-  width: 40px;
-  height: 40px;
-  background: #39b16c;
-  flex-shrink: 0;
-  border: 1px solid rgba(16, 24, 40, 0.08);
-}
-
-.sbdocs-content .intro-radius-chip--sm {
-  border-radius: 2px;
-}
-.sbdocs-content .intro-radius-chip--md {
-  border-radius: 8px;
-}
-.sbdocs-content .intro-radius-chip--lg {
-  border-radius: 12px;
-}
-.sbdocs-content .intro-radius-chip--full {
-  border-radius: 9999px;
-}
-
-.sbdocs-content .intro-action-visual--shadows {
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.sbdocs-content .intro-shadow-tile {
-  display: block;
-  width: 44px;
-  height: 44px;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e4e7ec;
-  flex-shrink: 0;
-}
-
-.sbdocs-content .intro-shadow-tile--sm {
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
-}
-.sbdocs-content .intro-shadow-tile--md {
-  box-shadow:
-    0 2px 4px -2px rgba(16, 24, 40, 0.06),
-    0 4px 8px -2px rgba(16, 24, 40, 0.1);
-}
-.sbdocs-content .intro-shadow-tile--lg {
-  box-shadow:
-    0 4px 6px -2px rgba(16, 24, 40, 0.03),
-    0 12px 16px -4px rgba(16, 24, 40, 0.08);
-}
-
-.sbdocs-content .intro-action-visual--button {
-  padding: 1.25rem;
-}
-
-.sbdocs-content .intro-btn-chip {
-  display: inline-block;
-  font-family: 'Inter', system-ui, sans-serif !important;
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  color: #ccf8b9 !important;
-  background: #073d30 !important;
-  padding: 0.5rem 1rem !important;
-  border-radius: 9999px !important;
-  line-height: 1 !important;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
-}
-
-.sbdocs-content .intro-action-visual--modal {
-  padding: 1rem;
-}
-
-.sbdocs-content .intro-modal-shell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  max-width: 120px;
-  height: 72px;
-  margin: 0 auto;
-  border-radius: 10px;
-  background: rgba(16, 24, 40, 0.12);
-}
-
-.sbdocs-content .intro-modal-body {
-  display: block;
-  width: 72%;
-  height: 56%;
-  border-radius: 6px;
-  background: #fff;
-  border: 1px solid #e4e7ec;
-  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+  height: 100%;
+  object-fit: cover;
 }
 
 .sbdocs-content .intro-action-body {
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 0.9rem 1.125rem 1.125rem;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -493,4 +397,174 @@ body.sb-show-nopreview > #storybook-docs {
   line-height: 1.45 !important;
   color: #667085 !important;
   margin: 0;
+}
+
+/* ----- Introduction: info sections below quick actions ----- */
+.sbdocs-content .intro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  max-width: none !important;
+  padding-top: 0.25rem;
+  border-top: 1px solid #e4e7ec;
+}
+
+.sbdocs-content .intro-info-section {
+  margin: 0;
+}
+
+.sbdocs-content .intro-info-heading {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  color: #101828 !important;
+  margin: 0 0 0.75rem !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sbdocs-content .intro-info-lead {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.55 !important;
+  color: #667085 !important;
+  margin: 0 0 1.25rem !important;
+  max-width: 42rem;
+}
+
+.sbdocs-content .intro-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sbdocs-content .intro-info-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.sbdocs-content .intro-info-card {
+  padding: 1.125rem 1.25rem;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+
+.sbdocs-content .intro-info-card-title {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  color: #101828 !important;
+  margin: 0 0 0.5rem !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.sbdocs-content .intro-info-card-text {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.5 !important;
+  color: #667085 !important;
+  margin: 0 !important;
+}
+
+.sbdocs-content .intro-info-steps {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.55 !important;
+  color: #344054 !important;
+  margin: 0 0 1.25rem !important;
+  padding-left: 1.25rem !important;
+  max-width: 42rem;
+}
+
+.sbdocs-content .intro-info-steps li {
+  margin-bottom: 0.75rem;
+}
+
+.sbdocs-content .intro-info-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.sbdocs-content .intro-info-steps strong {
+  color: #101828;
+  font-weight: 600;
+}
+
+.sbdocs-content .intro-info-steps code {
+  font-size: 0.8125rem;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: #f2f4f7;
+  color: #101828;
+}
+
+.sbdocs-content .intro-info-callout {
+  max-width: 42rem;
+  padding: 1rem 1.125rem;
+  border-radius: 10px;
+  border: 1px solid #cce8d9;
+  background: #f3faf6;
+}
+
+.sbdocs-content .intro-info-callout p {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  color: #344054 !important;
+  margin: 0 !important;
+}
+
+.sbdocs-content .intro-info-callout strong {
+  color: #073d30;
+}
+
+.sbdocs-content .intro-info-links {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 36rem;
+}
+
+.sbdocs-content .intro-info-links li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.875rem 1.125rem;
+  margin: 0 !important;
+  border-bottom: 1px solid #e4e7ec;
+  background: #ffffff;
+}
+
+.sbdocs-content .intro-info-links li:last-child {
+  border-bottom: none;
+}
+
+.sbdocs-content .intro-info-links a {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  color: #073d30 !important;
+  text-decoration: none !important;
+}
+
+.sbdocs-content .intro-info-links a:hover {
+  color: #1e6151 !important;
+  text-decoration: underline !important;
+}
+
+.sbdocs-content .intro-info-link-desc {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.4 !important;
+  color: #667085 !important;
 }

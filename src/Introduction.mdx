@@ -1,26 +1,34 @@
-{/* Home — zeroheight-style foundation landing; package.json --initial-path */}
+{/* Home — Cater Design System landing; package.json --initial-path */}
 import { Meta, AnchorMdx } from '@storybook/addon-docs/blocks';
-import { Home, Search, Settings, Stars } from './icons';
+
+import colorsPreview from './introduction/assets/colors.png';
+import typographyPreview from './introduction/assets/typography.png';
+import iconsPreview from './introduction/assets/icons.png';
+import shadowsPreview from './introduction/assets/shadows.png';
+
+export const FIGMA_FILE_URL =
+  'https://www.figma.com/design/tK5SjqGRgeVr5w5tmxuLDa/Cater-Design-System?node-id=0-1&p=f&t=d7uioDYjsoiA4TZq-0';
 
 <Meta title="Introduction" />
 
 <div className="intro-hero">
-  <div className="intro-overline">Foundation</div>
-  <h1 className="intro-hero-heading">Foundation</h1>
+  <div className="intro-overline">Cater Design System v1.0</div>
+  <h1 className="intro-hero-heading">Cater Design System v1.0</h1>
   <div className="intro-hero-desc">
-    The visual language that underpins Cater products—the color styles, typography, icons, and spacing that align our
+    The visual language that underpins Cater products—color, typography, icons, and elevation that align our
     brand, Figma, and engineering in one system.
   </div>
+  <p className="intro-hero-figma">
+    <a href={FIGMA_FILE_URL} target="_blank" rel="noopener noreferrer" className="intro-external-link">
+      Open Cater Design System in Figma →
+    </a>
+  </p>
 </div>
 
 <div className="intro-actions" role="list">
   <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-colors--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--colors" aria-hidden="true">
-      <span className="intro-swatch" style={{ background: '#073D30' }} />
-      <span className="intro-swatch" style={{ background: '#39B16C' }} />
-      <span className="intro-swatch" style={{ background: '#CCF8B9' }} />
-      <span className="intro-swatch" style={{ background: '#AA7326' }} />
-      <span className="intro-swatch" style={{ background: '#FC71EE' }} />
+    <div className="intro-action-visual">
+      <img className="intro-action-image" src={colorsPreview} alt="" />
     </div>
     <div className="intro-action-body">
       <span className="intro-action-title">Colors</span>
@@ -29,9 +37,8 @@ import { Home, Search, Settings, Stars } from './icons';
   </AnchorMdx>
 
   <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-typography--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--type" aria-hidden="true">
-      <span className="intro-type-sample-lg">Aa</span>
-      <span className="intro-type-sample-sm">Body and display styles</span>
+    <div className="intro-action-visual">
+      <img className="intro-action-image" src={typographyPreview} alt="" />
     </div>
     <div className="intro-action-body">
       <span className="intro-action-title">Typography</span>
@@ -40,11 +47,8 @@ import { Home, Search, Settings, Stars } from './icons';
   </AnchorMdx>
 
   <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-icons--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--icons" aria-hidden="true">
-      <Search width={28} height={28} className="intro-icon-sample" />
-      <Home width={28} height={28} className="intro-icon-sample" />
-      <Settings width={28} height={28} className="intro-icon-sample" />
-      <Stars width={28} height={28} className="intro-icon-sample" />
+    <div className="intro-action-visual">
+      <img className="intro-action-image" src={iconsPreview} alt="" />
     </div>
     <div className="intro-action-body">
       <span className="intro-action-title">Icons</span>
@@ -52,63 +56,120 @@ import { Home, Search, Settings, Stars } from './icons';
     </div>
   </AnchorMdx>
 
-  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-spacing--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--spacing" aria-hidden="true">
-      <span className="intro-space-bar intro-space-bar--1" />
-      <span className="intro-space-bar intro-space-bar--2" />
-      <span className="intro-space-bar intro-space-bar--3" />
-      <span className="intro-space-bar intro-space-bar--4" />
-    </div>
-    <div className="intro-action-body">
-      <span className="intro-action-title">Spacing</span>
-      <span className="intro-action-desc">Spacing scale and layout variables.</span>
-    </div>
-  </AnchorMdx>
-
-  <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-radius--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--radius" aria-hidden="true">
-      <span className="intro-radius-chip intro-radius-chip--sm" />
-      <span className="intro-radius-chip intro-radius-chip--md" />
-      <span className="intro-radius-chip intro-radius-chip--lg" />
-      <span className="intro-radius-chip intro-radius-chip--full" />
-    </div>
-    <div className="intro-action-body">
-      <span className="intro-action-title">Radius</span>
-      <span className="intro-action-desc">Corner radii for surfaces, controls, and modals.</span>
-    </div>
-  </AnchorMdx>
-
   <AnchorMdx className="intro-action-card" href="?path=/docs/tokens-shadows--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--shadows" aria-hidden="true">
-      <span className="intro-shadow-tile intro-shadow-tile--sm" />
-      <span className="intro-shadow-tile intro-shadow-tile--md" />
-      <span className="intro-shadow-tile intro-shadow-tile--lg" />
+    <div className="intro-action-visual">
+      <img className="intro-action-image" src={shadowsPreview} alt="" />
     </div>
     <div className="intro-action-body">
       <span className="intro-action-title">Shadows</span>
       <span className="intro-action-desc">Elevation tokens for depth and hierarchy.</span>
     </div>
   </AnchorMdx>
+</div>
 
-  <AnchorMdx className="intro-action-card" href="?path=/docs/components-button--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--button" aria-hidden="true">
-      <span className="intro-btn-chip">Button</span>
+<div className="intro-info">
+  <section className="intro-info-section">
+    <h2 className="intro-info-heading">What&apos;s in this library</h2>
+    <p className="intro-info-lead">
+      Cater Design System is the shared source of truth for WeCater product UI—tokens, components, and
+      reference implementations that stay aligned with the Figma library and production code.
+    </p>
+    <div className="intro-info-grid">
+      <div className="intro-info-card">
+        <h3 className="intro-info-card-title">Foundation</h3>
+        <p className="intro-info-card-text">
+          Color, typography, icons, and shadows define brand and semantic meaning. Use these tokens before
+          hard-coding values in product screens.
+        </p>
+      </div>
+      <div className="intro-info-card">
+        <h3 className="intro-info-card-title">Components</h3>
+        <p className="intro-info-card-text">
+          Accessible React building blocks—buttons, inputs, modals, alerts, and more—documented with variants,
+          props, and copyable usage examples.
+        </p>
+      </div>
+      <div className="intro-info-card">
+        <h3 className="intro-info-card-title">Examples</h3>
+        <p className="intro-info-card-text">
+          Full layouts and flows (e.g. explore, checkout modals) that show how tokens and components compose
+          in real Cater experiences.
+        </p>
+      </div>
     </div>
-    <div className="intro-action-body">
-      <span className="intro-action-title">Button</span>
-      <span className="intro-action-desc">Types, sizes, icons, and disabled states.</span>
-    </div>
-  </AnchorMdx>
+  </section>
 
-  <AnchorMdx className="intro-action-card" href="?path=/docs/components-modal--docs" target="_self" role="listitem">
-    <div className="intro-action-visual intro-action-visual--modal" aria-hidden="true">
-      <span className="intro-modal-shell">
-        <span className="intro-modal-body" />
-      </span>
+  <section className="intro-info-section">
+    <h2 className="intro-info-heading">Getting started</h2>
+    <ol className="intro-info-steps">
+      <li>
+        <strong>Review foundation tokens</strong> — start with the quick links above or open{' '}
+        <strong>Tokens</strong> in the sidebar for the full palette, type scale, and icon gallery.
+      </li>
+      <li>
+        <strong>Pick a component</strong> — browse <strong>Components</strong> or <strong>Molecules</strong> for
+        APIs, states, and accessibility notes on each control.
+      </li>
+      <li>
+        <strong>Copy from docs</strong> — every docs page includes live previews and <strong>Show code</strong>{' '}
+        snippets you can paste into your app.
+      </li>
+      <li>
+        <strong>Compose in product</strong> — import from <code>cater-design-systems</code> and apply Tailwind
+        token classes so UI stays consistent with Storybook.
+      </li>
+    </ol>
+    <div className="intro-info-callout">
+      <p>
+        <strong>Figma parity.</strong> Components and tokens are mapped to the{' '}
+        <a href={FIGMA_FILE_URL} target="_blank" rel="noopener noreferrer" className="intro-external-link">
+          Cater Design System
+        </a>{' '}
+        file in Figma. When specs change in design, update tokens and components here first, then ship to product.
+      </p>
     </div>
-    <div className="intro-action-body">
-      <span className="intro-action-title">Modal</span>
-      <span className="intro-action-desc">Dialogs for confirm, task, and picker flows.</span>
-    </div>
-  </AnchorMdx>
+  </section>
+
+  <section className="intro-info-section">
+    <h2 className="intro-info-heading">Explore further</h2>
+    <p className="intro-info-lead">Jump directly to commonly used areas of the docs.</p>
+    <ul className="intro-info-links">
+      <li>
+        <a href={FIGMA_FILE_URL} target="_blank" rel="noopener noreferrer" className="intro-external-link">
+          Cater Design System (Figma)
+        </a>
+        <span className="intro-info-link-desc">Source file for tokens, components, and specs</span>
+      </li>
+      <li>
+        <AnchorMdx href="?path=/docs/components-button--docs" target="_self">
+          Button
+        </AnchorMdx>
+        <span className="intro-info-link-desc">Primary actions and variants</span>
+      </li>
+      <li>
+        <AnchorMdx href="?path=/docs/components-input-field--docs" target="_self">
+          Input Field
+        </AnchorMdx>
+        <span className="intro-info-link-desc">Text, email, phone, and practical input kinds</span>
+      </li>
+      <li>
+        <AnchorMdx href="?path=/docs/components-modal--docs" target="_self">
+          Modal
+        </AnchorMdx>
+        <span className="intro-info-link-desc">Dialogs, headers, and sizes</span>
+      </li>
+      <li>
+        <AnchorMdx href="?path=/docs/examples-wecater-explore-page--docs" target="_self">
+          WeCater Explore page
+        </AnchorMdx>
+        <span className="intro-info-link-desc">End-to-end layout example</span>
+      </li>
+      <li>
+        <AnchorMdx href="?path=/docs/changelog--docs" target="_self">
+          Changelog
+        </AnchorMdx>
+        <span className="intro-info-link-desc">Release notes and doc updates</span>
+      </li>
+    </ul>
+  </section>
 </div>

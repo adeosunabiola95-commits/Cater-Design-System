@@ -90,7 +90,7 @@ export const TabGroup = React.forwardRef<HTMLDivElement, TabGroupProps>(
                       ? [
                           'relative px-[10px] pb-3 -mb-px',
                           isSelected
-                            ? 'z-10 text-salem-600 shadow-[0_3px_0_0_var(--color-salem-600)]'
+                            ? 'z-10 text-salem-800 shadow-[0_3px_0_0_var(--color-salem-600)]'
                             : 'border-b-2 border-transparent text-text-body hover:text-text-title',
                         ]
                       : [

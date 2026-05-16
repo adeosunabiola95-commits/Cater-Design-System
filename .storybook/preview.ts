@@ -4,11 +4,22 @@ import '../src/index.css';
 import './docs-spec.css';
 
 const preview: Preview = {
+  /** Component docs live in `*.docs.mdx`; do not auto-generate parallel autodocs pages. */
+  tags: ['!autodocs'],
   parameters: {
     options: {
       /** Top-level nav: project pages, all tokens, components, examples (not strict A–Z). */
       storySort: {
-        order: ['Introduction', 'Changelog', 'Tokens', 'Components', 'Examples'],
+        order: [
+          'Introduction',
+          'Changelog',
+          'Tokens',
+          'Molecules',
+          'Components',
+          ['Logo', 'Modal', '*'],
+          'Examples',
+          ['Modal', '*'],
+        ],
         locales: 'en-US',
       },
     },
@@ -48,7 +59,7 @@ const preview: Preview = {
       },
     },
     a11y: {
-      test: 'todo',
+      test: 'error',
     },
   },
 };

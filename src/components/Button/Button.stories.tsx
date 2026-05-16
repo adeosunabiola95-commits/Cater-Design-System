@@ -7,7 +7,6 @@ import { Button } from './Button';
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
-  tags: [],
   args: {
     onClick: fn(),
   },
@@ -114,7 +113,7 @@ export const IconRight: Story = {
 
 export const IconAlone: Story = {
   name: 'Icon Alone',
-  args: { variant: 'primary', icon: 'alone' },
+  args: { variant: 'primary', icon: 'alone', 'aria-label': 'Continue' },
 };
 
 // ===== LAYOUT =====
@@ -230,7 +229,7 @@ export const AllIconPositions: Story = {
       <Button icon="none">No Icon</Button>
       <Button icon="left">Icon Left</Button>
       <Button icon="right">Icon Right</Button>
-      <Button icon="alone" />
+      <Button icon="alone" aria-label="Continue" />
     </div>
   ),
 };

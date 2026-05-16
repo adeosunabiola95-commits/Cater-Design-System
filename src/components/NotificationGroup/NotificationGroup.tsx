@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { Toggle, type ToggleSize } from '../Toggle';
 
 export interface NotificationGroupProps {
@@ -34,6 +34,9 @@ export const NotificationGroup = forwardRef<HTMLDivElement, NotificationGroupPro
     },
     ref
   ) => {
+    const titleId = useId();
+    const descriptionId = description ? `${titleId}-description` : undefined;
+
     return (
       <div
         ref={ref}
@@ -50,11 +53,13 @@ export const NotificationGroup = forwardRef<HTMLDivElement, NotificationGroupPro
             defaultChecked={defaultChecked}
             onChange={onChange}
             disabled={disabled}
+            aria-labelledby={[titleId, descriptionId].filter(Boolean).join(' ')}
           />
         </div>
 
         <div className="flex flex-col" style={{ gap: 2, minWidth: 0, flex: 1 }}>
           <span
+            id={titleId}
             className="font-body"
             style={{
               fontSize: 16,
@@ -69,6 +74,7 @@ export const NotificationGroup = forwardRef<HTMLDivElement, NotificationGroupPro
 
           {description && (
             <span
+              id={descriptionId}
               className="font-body"
               style={{
                 fontSize: 14,

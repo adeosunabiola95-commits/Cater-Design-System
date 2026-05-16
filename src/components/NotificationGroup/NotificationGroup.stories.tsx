@@ -5,7 +5,6 @@ import { NotificationGroup } from './NotificationGroup';
 const meta: Meta<typeof NotificationGroup> = {
   title: 'Components/Notification Group',
   component: NotificationGroup,
-  tags: [],
   parameters: {
     docs: {
       description: {

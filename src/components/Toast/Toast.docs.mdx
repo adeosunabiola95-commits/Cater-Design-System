@@ -6,21 +6,39 @@ import * as ToastStories from './Toast.stories';
 
 # Toast
 
-Toast displays a compact dark notification. Single-line message with optional close. Typically appears temporarily (e.g. top-right corner) and auto-dismisses.
+Transient notification for cart and workflow feedback. Maps to Figma **Toast** `3989:7863` in [Cater Design System](https://www.figma.com/design/tK5SjqGRgeVr5w5tmxuLDa/Cater-Design-System?node-id=3989-7863).
+
+Dark **Mirage 900** surface, **10px** corner radius, **12px** padding, **21px** gap between message, action, and close. Message is **14px** white body copy with an optional **semibold** highlight; action uses **Brand Gossip** (`#CCF8B9`); close uses the **24×24** cancel icon.
 
 ---
 
 ## Default
 
-Dark background (mirage-900), white text, 4px corner radius. Compact layout for short messages.
+Figma default: “Your **Basic Breakfast Bar** has been added to cart” with **View** action and dismiss control.
 
 <Canvas of={ToastStories.Default} sourceState="shown" />
 
 ---
 
+## Without action
+
+`showAction={false}` hides the View control (Figma `Show View` = false).
+
+<Canvas of={ToastStories.WithoutAction} sourceState="shown" />
+
+---
+
+## Simple message
+
+Use `children` for a single-line message without highlight segments or action.
+
+<Canvas of={ToastStories.SimpleMessage} sourceState="shown" />
+
+---
+
 ## Example: Animated
 
-Click the button to show a Toast with enter/exit animation.
+Click the button to show the Figma default toast with enter/exit animation.
 
 <Canvas of={ToastStories.AnimatedExample} sourceState="shown" />
 
@@ -34,8 +52,9 @@ Click the button to show a Toast with enter/exit animation.
 
 ## Usage Guidelines
 
-- **Do**: Use Toast for transient feedback (e.g. "Payment added", "Saved")
-- **Do**: Place Toasts in a fixed corner (top-right or bottom-right)
-- **Do**: Keep messages short—one line when possible
-- **Don't**: Use Toast for critical errors that require acknowledgment
-- **Don't**: Stack many Toasts—consider a single summary or Alert instead
+- **Do**: Use for transient success feedback (e.g. item added to cart)
+- **Do**: Keep copy short; use `messageHighlight` for the entity name (product, plan, etc.)
+- **Do**: Wire `onAction` when the View control should navigate or open a detail
+- **Don't**: Use for errors that need acknowledgment — use Alert or Modal
+- **Don't**: Stack many toasts without auto-dismiss — prefer the stacking example pattern
+- **Accessibility**: `role="status"`; close button has `aria-label="Close notification"`

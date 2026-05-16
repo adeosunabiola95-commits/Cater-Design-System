@@ -1,0 +1,35 @@
+{/* CustomizeOrderModal.docs.mdx */}
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as CustomizeOrderModalStories from './CustomizeOrderModal.stories';
+
+<Meta of={CustomizeOrderModalStories} />
+
+# Customize order modal
+
+Marketplace flow for customizing a catering item before add-to-cart. Maps to Figma **Customize order** (`4696:20074`).
+
+---
+
+## Overview
+
+| Section | Content |
+| ------- | ------- |
+| **Header** | Title + subtext + close (`4684:19918` pattern) |
+| **Hero** | 723×152 image with **Required · Select 1** badge |
+| **Quantity** | `InputField` (filled state) |
+| **Pricing** | Per-tray estimate + subtotal row |
+| **Options** | Choice of side, sauce, salad add-on (pill selectors) |
+| **Additional info** | Collapsible `MessageBox` |
+| **Footer** | Full-width **Add to cart** CTA with live subtotal |
+
+---
+
+## Customize order
+
+<Canvas of={CustomizeOrderModalStories.CustomizeOrder} sourceState="shown" />
+
+---
+
+## Figma reference
+
+[Customize order — Cater Design System](https://www.figma.com/design/tK5SjqGRgeVr5w5tmxuLDa/Cater-Design-System?node-id=4696-20074)

@@ -5,7 +5,6 @@ import { Radio } from './Radio';
 const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',
   component: Radio,
-  tags: [],
   parameters: {
     docs: {
       description: {
