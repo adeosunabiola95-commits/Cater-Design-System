@@ -1,10 +1,13 @@
-# Publishes Storybook to the gh-pages branch (avoids deploy-pages 404 when Actions Pages API is unavailable).
+# Storybook → GitHub Pages
 #
-# One-time repo setup:
-#   Settings → Pages → Build and deployment → Source: Deploy from a branch
-#   Branch: gh-pages  /  (root)
+# ONE-TIME SETUP (required or the site returns 404):
+#   Repo → Settings → Pages → Build and deployment
+#   Source: GitHub Actions
 #
-# Live URL: https://<user>.github.io/<repo-name>/
+# Public URL: https://<user>.github.io/<repo-name>/
+# This repo:  https://adeosunabiola95-commits.github.io/Cater-Design-System/
+#
+# Note: Free GitHub Pages requires a public repository (or a paid plan for private repos).
 name: Deploy Storybook to GitHub Pages
 
 on:
@@ -15,14 +18,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,10 +50,18 @@ jobs:
       - name: Verify build output
         run: test -f storybook-static/index.html
 
-      - name: Publish to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
-          publish_branch: gh-pages
-          enable_jekyll: false
+          path: storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
