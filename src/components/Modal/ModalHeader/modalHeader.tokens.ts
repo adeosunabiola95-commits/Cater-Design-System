@@ -6,7 +6,7 @@ export const MODAL_HEADER_FIGMA = {
 
 /** Header container padding — 24px all sides */
 export const modalHeaderContainerClass =
-  'flex shrink-0 items-center justify-between gap-8 border-b border-border-subtle p-6';
+  'flex shrink-0 items-start justify-between gap-8 border-b border-border-subtle p-6';
 
 /** Title block vertical gap — 12px between title and subtext */
 export const modalHeaderTextGroupClass = 'flex min-w-0 flex-1 flex-col gap-[12px]';

@@ -3,26 +3,10 @@
  * Reference: spec-style docs (Inter display title, blue lead, quiet tables).
  */
 
-/*
- * Docs shell fix (duplicate of previewHead for CSS load order).
- * Hides static placeholder table + "No Preview" when real docs are in #storybook-docs.
- */
+/* Hide static docs placeholder shells (see previewHead in main.ts). */
 .sb-preparing-docs,
 .sb-nopreview,
 .sb-errordisplay {
-  display: none !important;
-}
-
-body.sb-show-preparing-docs:not(.sb-show-main) > #storybook-docs,
-body.sb-show-nopreview > #storybook-docs {
-  display: block !important;
-}
-
-#storybook-docs:not([hidden]) {
-  display: block !important;
-}
-
-#storybook-root[hidden] {
   display: none !important;
 }
 

@@ -1,10 +1,4 @@
-import { Meta, Title, Subtitle } from '@storybook/addon-docs/blocks';
-
-<Meta title="Changelog" />
-
-<Title>Changelog</Title>
-
-<Subtitle>Notable updates to components, tokens, and documentation. Source: <code>CHANGELOG.md</code> in the repo root (synced on release).</Subtitle>
+# Changelog
 
 All notable changes to Cater Design System are documented here and synced to Storybook (`src/Changelog.mdx`).
 

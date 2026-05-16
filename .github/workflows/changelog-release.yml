@@ -1,0 +1,44 @@
+# Promote CHANGELOG Unreleased → versioned section, sync Storybook, bump package.json, tag.
+#
+# Run manually: Actions → Release changelog → Run workflow → enter semver (e.g. 1.1.0)
+# Pushing the tag/commit triggers Deploy Storybook to GitHub Pages on main.
+name: Release changelog
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver for this release (e.g. 1.1.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Promote changelog & bump version
+        run: node scripts/changelog-release.mjs ${{ inputs.version }}
+
+      - name: Sync Storybook changelog page
+        run: node scripts/sync-changelog-storybook.mjs
+
+      - name: Commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md src/Changelog.mdx package.json
+          git commit -m "chore(release): v${{ inputs.version }}"
+          git tag "v${{ inputs.version }}"
+          git push
+          git push origin "v${{ inputs.version }}"

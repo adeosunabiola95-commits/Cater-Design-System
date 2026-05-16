@@ -14,7 +14,6 @@ const preview: Preview = {
           'Introduction',
           'Changelog',
           'Tokens',
-          'Molecules',
           'Components',
           ['Logo', 'Modal', '*'],
           'Examples',

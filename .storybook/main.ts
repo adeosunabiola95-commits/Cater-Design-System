@@ -23,55 +23,13 @@ const config: StorybookConfig = {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
     <style>
-      /*
-       * Hide Storybook's static docs placeholder shells (propertyName table + "No Preview").
-       * Real docs render in #storybook-docs; these shells can stick when sb-show-main is delayed.
-       */
+      /* Hide static placeholder shells only — do not force #storybook-docs always visible (breaks nav). */
       .sb-preparing-docs,
       .sb-nopreview,
       .sb-errordisplay {
         display: none !important;
       }
-      /* Storybook hides #storybook-docs while preparing — override so MDX can show */
-      body.sb-show-preparing-docs:not(.sb-show-main) > #storybook-docs,
-      body.sb-show-nopreview > #storybook-docs {
-        display: block !important;
-      }
-      #storybook-docs:not([hidden]) {
-        display: block !important;
-      }
     </style>
-    <script>
-      /* One-shot fix: set sb-show-main when MDX mounts (no MutationObserver — avoids hang) */
-      (function () {
-        var done = false;
-        function fixDocsShell() {
-          if (done) return;
-          var docs = document.getElementById('storybook-docs');
-          if (!docs || !docs.querySelector('.sbdocs')) return;
-          done = true;
-          document.body.classList.add('sb-show-main');
-          document.body.classList.remove(
-            'sb-show-preparing-story',
-            'sb-show-preparing-docs',
-            'sb-show-nopreview'
-          );
-          docs.removeAttribute('hidden');
-          var root = document.getElementById('storybook-root');
-          if (root) root.setAttribute('hidden', 'true');
-        }
-        var ticks = 0;
-        var timer = setInterval(function () {
-          fixDocsShell();
-          if (done || ++ticks > 150) clearInterval(timer);
-        }, 40);
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', fixDocsShell);
-        } else {
-          fixDocsShell();
-        }
-      })();
-    </script>
   `,
   /** Manager UI fonts to match Docs body */
   managerHead: `

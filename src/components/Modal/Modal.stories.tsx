@@ -19,7 +19,7 @@ const meta: Meta<typeof Modal> = {
     docs: {
       description: {
         component:
-          'Centered dialog — **header** (`ModalHeader`), **body** (`ModalBody`), **actions** (`ModalActions`). Header copy and layout match **Molecules → Modal Header** (Figma `4684:19909` / `4684:19918`).',
+          'Centered dialog — **header** (`ModalHeader`), **body** (`ModalBody`), **actions** (`ModalActions`). Header variants match Figma `4684:19909` (title only) and `4684:19918` (with subtext).',
       },
       story: { iframeHeight: 800 },
       source: { type: 'dynamic' },
@@ -48,7 +48,7 @@ function ModalDemo({
   );
 }
 
-/** Same header as Molecules → Modal Header → Header container. */
+/** Title-only header (Figma `4684:19909`). */
 export const TitleOnlyHeader: Story = {
   name: 'Header · Title only',
   render: () => (
@@ -59,7 +59,7 @@ export const TitleOnlyHeader: Story = {
   ),
 };
 
-/** Same header as Molecules → Modal Header → Header container with subtext. */
+/** Header with subtext (Figma `4684:19918`). */
 export const HeaderWithSubtext: Story = {
   name: 'Header · With subtext',
   render: () => (

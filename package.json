@@ -11,7 +11,9 @@
     "storybook": "storybook dev -p 6006 --initial-path /docs/introduction--docs",
     "build-storybook": "storybook build",
     "build-storybook:pages": "STORYBOOK_BASE_PATH=/Cater-Design-System/ storybook build",
-    "icons:generate": "node scripts/generate-remix-icons.mjs"
+    "icons:generate": "node scripts/generate-remix-icons.mjs",
+    "changelog:sync": "node scripts/sync-changelog-storybook.mjs",
+    "changelog:release": "node scripts/changelog-release.mjs"
   },
   "keywords": [],
   "author": "",
